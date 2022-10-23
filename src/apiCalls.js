@@ -13,14 +13,24 @@ const fetchApiUrl = (path) => {
       fetchApiUrl("recipes"),
       fetchApiUrl("users"),
     ])
-    // .then((data) => {
-    //     console.log('data', data)
-    //     return {
-    //         ingredientsData: data[0].ingredientsData, 
-    //         recipeData: data[1].recipeData,
-    //         usersData: data[2].usersData
-    //     }
-    // })
+    .then((data) => {
+        console.log('data', data)
+        return {
+            ingredientsData: data[0].ingredientsData, 
+            recipeData: data[1].recipeData,
+            usersData: data[2].usersData
+        }
+    })
   }
+  
+//   function getApiData() {
+//     fetchData()
+//     .then(data => {
+//         console.log('newData', data)
+//         apiReturnData = data
+//         console.log('apiReturn', apiReturnData)
+//     })
+// }
 
+  
   export default fetchData

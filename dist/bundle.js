@@ -457,13 +457,14 @@ const fetchApiUrl = (path) => {
       fetchApiUrl("recipes"),
       fetchApiUrl("users"),
     ])
-    .then((data) => {
-        return {
-            ingredientsData: data[0].ingredientsData, 
-            recipeData: data[1].recipeData,
-            usersData: data[2].usersData
-        }
-    })
+    // .then((data) => {
+    //     console.log('data', data)
+    //     return {
+    //         ingredientsData: data[0].ingredientsData, 
+    //         recipeData: data[1].recipeData,
+    //         usersData: data[2].usersData
+    //     }
+    // })
   }
 
   /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (fetchData);
@@ -7512,8 +7513,13 @@ function viewHome () {
 }
 
 function getApiData() {
-    apiReturnData = (0,_apiCalls__WEBPACK_IMPORTED_MODULE_1__["default"])()
-    console.log('apiReturn', apiReturnData)
+    (0,_apiCalls__WEBPACK_IMPORTED_MODULE_1__["default"])()
+    .then(data => {
+        console.log('data', data)
+        apiReturnData = data
+        console.log('apiReturn', apiReturnData)
+    })
+  
 }
 
 //EventListener

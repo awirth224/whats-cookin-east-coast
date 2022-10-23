@@ -36,6 +36,9 @@ let randomRecipes
 let allRecipes
 let selectedRecipe
 let apiReturnData
+// let newIngredientsData = new Ingredients(apiReturnData.ingredientsData)
+
+
 
 //Functions
 const getRandomIndex = array => {
@@ -55,6 +58,8 @@ function loadHandler(){
     generateRandomRecipes()
     generateAllRecipes()
     getApiData()
+    console.log('returnAPiData', apiReturn.data)
+    
 }
 
 function clickHandler(){

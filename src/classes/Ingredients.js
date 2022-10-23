@@ -2,6 +2,7 @@ import ingredientsData from '../data/ingredients'
 // import fetchData  from "../apiCalls";
 // import fetchApiUrl from "../apiCalls";
 // import apiIngredients from "../apiCalls";
+// import apiReturnData from "../apiCalls";
 
 
 class Ingredients {
@@ -13,7 +14,7 @@ class Ingredients {
     combinedIngredients() {
         let ingredientsNeededInfo = [];
         this.data.forEach((ingredient) => {
-            // console.log('fetchData', fetchData())
+            // console.log('getApiData', getApiData())
             var info = ingredientsData.find( ing => ingredient.id === ing.id)
             ingredientsNeededInfo.push({...info,...ingredient})
         })
