@@ -9,6 +9,7 @@ import Recipe from '../src/classes/Recipe';
 import Ingredients from '../src/classes/Ingredients';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import recipeData from '../src/data/recipes';
+import fetchData from '../src/apiCalls';
 
 //QuerySelector
 const currentRecipeName = document.querySelector(".current-recipe-name")
@@ -34,6 +35,7 @@ let currentRecipe
 let randomRecipes
 let allRecipes
 let selectedRecipe
+let apiReturnData
 
 //Functions
 const getRandomIndex = array => {
@@ -52,6 +54,7 @@ function loadHandler(){
     onLoadRecipe()
     generateRandomRecipes()
     generateAllRecipes()
+    getApiData()
 }
 
 function clickHandler(){
@@ -173,6 +176,16 @@ function viewHome () {
     hideElement(homeButton)
     hideElement(allRecipesView)
     hideElement(selectedRecipeView)
+}
+
+function getApiData() {
+    fetchData()
+    .then(data => {
+        console.log('data', data)
+        apiReturnData = data
+        console.log('apiReturn', apiReturnData)
+    })
+  
 }
 
 //EventListener

@@ -1,10 +1,10 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ([
 /* 0 */,
 /* 1 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -30,7 +30,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /* 2 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 var isOldIE = function isOldIE() {
@@ -305,7 +304,6 @@ module.exports = function (list, options) {
 /* 3 */
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -328,7 +326,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #EDCFA9;\n
 /* 4 */
 /***/ ((module) => {
 
-"use strict";
 
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -370,7 +367,6 @@ module.exports = function cssWithMappingToString(item) {
 /* 5 */
 /***/ ((module) => {
 
-"use strict";
 
 
 /*
@@ -440,18 +436,42 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ }),
 /* 6 */
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// Your fetch requests will live here!
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 
+const fetchApiUrl = (path) => {
+    return fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/${path}`)
+    .then(response => response.json())
+    .then(data => data)
+    .catch(error => console.log(`${path} API Error! ${error}`))
+  }
+  
+  
+  const fetchData = () => {
+    return Promise.all([
+      fetchApiUrl("ingredients"),
+      fetchApiUrl("recipes"),
+      fetchApiUrl("users"),
+    ])
+    .then((data) => {
+        return {
+            ingredientsData: data[0].ingredientsData, 
+            recipeData: data[1].recipeData,
+            usersData: data[2].usersData
+        }
+    })
+  }
 
-console.log('I will be a fetch request!')
+  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (fetchData);
 
 /***/ }),
 /* 7 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -462,7 +482,6 @@ __webpack_require__.r(__webpack_exports__);
 /* 8 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -507,12 +526,15 @@ class Recipe {
 /* 9 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _data_ingredients__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
+
+// import fetchData  from "../apiCalls";
+// import fetchApiUrl from "../apiCalls";
+// import apiIngredients from "../apiCalls";
 
 
 class Ingredients {
@@ -520,9 +542,11 @@ class Ingredients {
         this.data = data
         this.modifiedData = this.combinedIngredients()
     }
+
     combinedIngredients() {
         let ingredientsNeededInfo = [];
         this.data.forEach((ingredient) => {
+            // console.log('fetchData', fetchData())
             var info = _data_ingredients__WEBPACK_IMPORTED_MODULE_0__["default"].find( ing => ingredient.id === ing.id)
             ingredientsNeededInfo.push({...info,...ingredient})
         })
@@ -530,13 +554,16 @@ class Ingredients {
     }
 }
 
+        // const fetchApiCalls = () => {
+        //     fetchData().then(data => {
+        //       let newIngredientsData = data[0].ingredientsData
+        // })  
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Ingredients);
 
 /***/ }),
 /* 10 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1786,7 +1813,6 @@ const ingredientsData = [
 /* 11 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -1831,7 +1857,6 @@ class RecipeRepository {
 /* 12 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -7296,13 +7321,11 @@ const recipeData = [
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _apiCalls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
-/* harmony import */ var _apiCalls__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_apiCalls__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _images_turing_logo_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
 /* harmony import */ var _src_classes_Recipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
 /* harmony import */ var _src_classes_Ingredients__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
@@ -7320,29 +7343,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 //QuerySelector
 const currentRecipeName = document.querySelector(".current-recipe-name")
 const currentRecipeImage = document.querySelector(".image-parent-main")
 const leftRandomImageCard = document.querySelector(".left-random-card")
 const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
+const tagSearchResults = document.querySelector(".tag-search-results")
+const nameSearchResults = document.querySelector(".name-search-results")
 
 const viewAllRecipesButton = document.querySelector(".view-all-recipes")
 const homeButton = document.querySelector(".home-button")
+const searchButton = document.querySelector(".submit-search-button")
+const searchInput = document.querySelector("#searchBar")
 
 const allRecipesView = document.querySelector(".all-recipes-view")
 const homeView = document.querySelector(".home-view")
 const selectedRecipeView = document.querySelector(".selected-recipe-view")
 const searchedRecipeView = document.querySelector(".searched-recipe-view")
 
-
 //Instances
 let currentRecipe
 let randomRecipes
 let allRecipes
 let selectedRecipe
-// let hiddenElements = [allRecipesView,homeButton,selectedRecipeView,searchedRecipeView]
-
+let apiReturnData
 
 //Functions
 const getRandomIndex = array => {
@@ -7350,18 +7376,10 @@ const getRandomIndex = array => {
 };
 
 function hideElement (hideThis) {
-    // if (!hiddenElements.includes(hideThis)) {
-    //     hiddenElements.push(hideThis)
-    // }
-    // hiddenElements.forEach(element => element.classList.add('hidden'))
     hideThis.classList.add("hidden")
 }
 
 function showElement (showThis) {
-    // if (hiddenElements.includes(showThis)) {
-    //     showThis.classList.remove('hidden')
-    //     hiddenElements.splice(showThis,1)
-    // }
     showThis.classList.remove("hidden")
 }
 
@@ -7369,6 +7387,7 @@ function loadHandler(){
     onLoadRecipe()
     generateRandomRecipes()
     generateAllRecipes()
+    getApiData()
 }
 
 function clickHandler(){
@@ -7377,12 +7396,10 @@ function clickHandler(){
 
 function generateAllRecipes () {
     allRecipes = new _src_classes_RecipeRepository__WEBPACK_IMPORTED_MODULE_5__["default"](_src_data_recipes__WEBPACK_IMPORTED_MODULE_6__["default"])
-    console.log("all recipes array", allRecipes)
 }
 
 function onLoadRecipe(){
     currentRecipe = new _src_classes_Recipe__WEBPACK_IMPORTED_MODULE_3__["default"](_src_data_recipes__WEBPACK_IMPORTED_MODULE_6__["default"][getRandomIndex(_src_data_recipes__WEBPACK_IMPORTED_MODULE_6__["default"])])
-    console.log(currentRecipe)
     showMainRecipe()
 }
 
@@ -7396,85 +7413,162 @@ function generateRandomRecipes(){
     randomRecipes.push(randomRecipe3)
 
     showMainRandomRecipes()
-    console.log(randomRecipes)
 }
 
 function showMainRecipe(){
     currentRecipeName.innerHTML = `${currentRecipe.name}`
-    currentRecipeImage.innerHTML = `<img class="current-recipe-image" img
+    currentRecipeImage.innerHTML = `<img class="current-recipe-image" id="${currentRecipe.id}" img
     src=${currentRecipe.image}>`
 }
 
-// function updateMainRecipeImage(){
-//     currentRecipeImage.innerHTML = `<img class="current-recipe-image" img
-//     src=${currentRecipe.image}>`
-// }
-
 function showMainRandomRecipes(){
-    leftRandomImageCard.innerHTML = `<img class="left-random-image" img src=${randomRecipes[0].image}>
+    leftRandomImageCard.innerHTML = `<img class="left-random-image" id="${randomRecipes[0].id}" img src=${randomRecipes[0].image}>
     <h1 class="left-random-name">${randomRecipes[0].name}</h1>`
-    middleRandomImageCard.innerHTML = `<img class="middle-random-image" img src=${randomRecipes[1].image}>
+    middleRandomImageCard.innerHTML = `<img class="middle-random-image" id="${randomRecipes[1].id}" img src=${randomRecipes[1].image}>
     <h1 class="middle-random-name">${randomRecipes[1].name}</h1>`
-    rightRandomImageCard.innerHTML = `<img class="right-random-image" img src=${randomRecipes[2].image}>
+    rightRandomImageCard.innerHTML = `<img class="right-random-image" id="${randomRecipes[2].id}" img src=${randomRecipes[2].image}>
     <h1 class="right-random-name">${randomRecipes[2].name}</h1>`
 }
 
 function viewSelectedRecipe () {
     hideElement(homeView)
     hideElement(searchedRecipeView)
+    hideElement(allRecipesView)
     showElement(selectedRecipeView)
     showElement(homeButton)
     showElement(viewAllRecipesButton)
+    showSelectedRecipe()
 }
 
-// function viewAllRecipes () {
-//     event.preventDefault()
-//     console.log("all recipes", allRecipes)
-//     allRecipes.recipesList.forEach(element => 
-//         allRecipesView.innerHTML+= `<h1>${element.name}</h1>`
-//     )
+function showSelectedRecipe() {
+    selectedRecipeView.innerHTML = `
+    <section class="selected-recipe-container">
+    <img class="selected-recipe-image" img src=${selectedRecipe.image}>
+    <h1 class="name">${selectedRecipe.name}</h1>
+    <h2 class="cost">Cost: ${selectedRecipe.getIngredientsCost()} cent</h2>
+    <h3 class="ingredients-list"> Ingredients </h3>
+    <h4 class="instructions-list"> Instructions </h4>
+    </section>`
+    showInstructions()
+    showIngredients()
+}
 
-//     showElement(allRecipesView)
-//     showElement(homeButton)
-// }
+function showIngredients() {
+    const selectedRecipeIngredients = document.querySelector(".ingredients-list")
 
-// function viewHome () {
-//     hideElement(homeButton)
-//     hideElement(allRecipesView)
-// }
+    selectedRecipe.ingredients.modifiedData.forEach(element =>
+        selectedRecipeIngredients.innerHTML += 
+        `<h3 class="ingredient-item">${element.quantity.amount} ${element.quantity.unit} ${element.name} <br></h3>`
+    )
+}
 
-//EventListener
-window.addEventListener("load", loadHandler())
-homeButton.addEventListener("click", function(event) {
-    event.preventDefault()
-    showElement(homeView)
-    showElement(viewAllRecipesButton)
-    hideElement(homeButton)
-    hideElement(allRecipesView)
-})
+function showInstructions() {
+    const selectedRecipeInstructions = document.querySelector(".instructions-list")
 
-viewAllRecipesButton.addEventListener("click", function (event){
-    event.preventDefault()
-    console.log("all recipes", allRecipes)
+    selectedRecipe.instructions.forEach(element =>
+        selectedRecipeInstructions.innerHTML += 
+        `<h3 class="instruction-item"> Step: ${element.number} <br>${element.instruction}</h3>`
+    )
+}
+
+function viewSearchedRecipes() {
+    nameSearchResults.innerHTML = ""
+    tagSearchResults.innerHTML = ""
+    let searchTerm = searchInput.value 
+    let tagResults = []
+    let nameResults = []
+    tagResults = allRecipes.filterByTag(searchTerm)
+    nameResults = allRecipes.filterByName(searchTerm)
+    if (nameResults.length === 0 && tagResults.length === 0) {
+        tagSearchResults.innerHTML = `<h1>There are no results for your search, please try a different search</h1>`
+    }
+    nameResults.forEach(element => 
+        nameSearchResults.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+    tagResults.forEach(element => 
+        tagSearchResults.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+    hideElement(selectedRecipeView)
+    hideElement(homeView)
+    showElement(searchedRecipeView)
+    showElement(homeButton)
+}
+
+function viewAllRecipes () {
     allRecipes.recipesList.forEach(element => 
         allRecipesView.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`
     )
     hideElement(viewAllRecipesButton)
     hideElement(homeView)
+    hideElement(selectedRecipeView)
     showElement(allRecipesView)
     showElement(homeButton)
+}
+
+function viewHome () {
+    showElement(homeView)
+    showElement(viewAllRecipesButton)
+    hideElement(homeButton)
+    hideElement(allRecipesView)
+    hideElement(selectedRecipeView)
+}
+
+function getApiData() {
+    apiReturnData = (0,_apiCalls__WEBPACK_IMPORTED_MODULE_1__["default"])()
+    console.log('apiReturn', apiReturnData)
+}
+
+//EventListener
+window.addEventListener("load", loadHandler())
+homeButton.addEventListener("click", function(event) {
+    event.preventDefault()
+    viewHome()
+})
+
+viewAllRecipesButton.addEventListener("click", function (event){
+    event.preventDefault()
+    viewAllRecipes()
 })
 
 allRecipesView.addEventListener("click", function (event) {
-    console.log("event", event.target.id)
-    let eventTargetId = event.target.id
-    console.log("all recipes", allRecipes)
-    let recipeChosen = allRecipes.recipesList.find(recipe => recipe.id == eventTargetId)
-    selectedRecipe = new _src_classes_Recipe__WEBPACK_IMPORTED_MODULE_3__["default"](recipeChosen)
-    console.log("selected Recipe", selectedRecipe)
-    console.log("var for event id", eventTargetId)
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
+
+searchedRecipeView.addEventListener("click", function (event) {
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
+    viewSelectedRecipe()
+})
+
+currentRecipeImage.addEventListener("click", function (event) {
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
+    viewSelectedRecipe()
+})
+
+leftRandomImageCard.addEventListener("click", function (event) {
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
+    viewSelectedRecipe()
+})
+
+middleRandomImageCard.addEventListener("click", function (event) {
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
+    viewSelectedRecipe()
+})
+
+rightRandomImageCard.addEventListener("click", function (event) {
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
+    viewSelectedRecipe()
+})
+
+searchButton.addEventListener("click", function(event){
+    event.preventDefault()
+    viewSearchedRecipes()
+})
+
 })();
 
 /******/ })()
