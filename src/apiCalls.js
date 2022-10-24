@@ -33,4 +33,4 @@ const fetchApiUrl = (path) => {
 // }
 
   
-  export default fetchData
+  export default { fetchData }

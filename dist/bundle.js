@@ -457,16 +457,26 @@ const fetchApiUrl = (path) => {
       fetchApiUrl("recipes"),
       fetchApiUrl("users"),
     ])
-    // .then((data) => {
-    //     console.log('data', data)
-    //     return {
-    //         ingredientsData: data[0].ingredientsData, 
-    //         recipeData: data[1].recipeData,
-    //         usersData: data[2].usersData
-    //     }
-    // })
+    .then((data) => {
+        console.log('data', data)
+        return {
+            ingredientsData: data[0].ingredientsData, 
+            recipeData: data[1].recipeData,
+            usersData: data[2].usersData
+        }
+    })
   }
+  
+//   function getApiData() {
+//     fetchData()
+//     .then(data => {
+//         console.log('newData', data)
+//         apiReturnData = data
+//         console.log('apiReturn', apiReturnData)
+//     })
+// }
 
+  
   /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (fetchData);
 
 /***/ }),
@@ -488,13 +498,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _classes_Ingredients__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
+/* harmony import */ var _apiCalls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
+
 
 
 class Recipe {
-    constructor(recipe) {
+    constructor(recipe, apiData) {
         this.id = recipe.id;
         this.image = recipe.image;
-        this.ingredients = new _classes_Ingredients__WEBPACK_IMPORTED_MODULE_0__["default"](recipe.ingredients)
+        this.ingredients = new _classes_Ingredients__WEBPACK_IMPORTED_MODULE_0__["default"](apiData.ingredientsData)
         this.instructions = recipe.instructions;
         this.name = recipe.name;
         this.tags = recipe.tags;
@@ -536,6 +548,7 @@ __webpack_require__.r(__webpack_exports__);
 // import fetchData  from "../apiCalls";
 // import fetchApiUrl from "../apiCalls";
 // import apiIngredients from "../apiCalls";
+// import apiReturnData from "../apiCalls";
 
 
 class Ingredients {
@@ -547,7 +560,7 @@ class Ingredients {
     combinedIngredients() {
         let ingredientsNeededInfo = [];
         this.data.forEach((ingredient) => {
-            // console.log('fetchData', fetchData())
+            // console.log('getApiData', getApiData())
             var info = _data_ingredients__WEBPACK_IMPORTED_MODULE_0__["default"].find( ing => ingredient.id === ing.id)
             ingredientsNeededInfo.push({...info,...ingredient})
         })
@@ -7370,6 +7383,9 @@ let randomRecipes
 let allRecipes
 let selectedRecipe
 let apiReturnData
+// let newIngredientsData = new Ingredients(apiReturnData.ingredientsData)
+
+
 
 //Functions
 const getRandomIndex = array => {
@@ -7389,6 +7405,8 @@ function loadHandler(){
     generateRandomRecipes()
     generateAllRecipes()
     getApiData()
+    console.log('returnAPiData', apiReturn.data)
+    
 }
 
 function clickHandler(){

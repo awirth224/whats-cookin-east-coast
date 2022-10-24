@@ -1,10 +1,11 @@
 import Ingredients from '../classes/Ingredients'
+import fetchData from '../apiCalls'
 
 class Recipe {
-    constructor(recipe) {
+    constructor(recipe, apiData) {
         this.id = recipe.id;
         this.image = recipe.image;
-        this.ingredients = new Ingredients(recipe.ingredients)
+        this.ingredients = new Ingredients(apiData.data.ingredientsData)
         this.instructions = recipe.instructions;
         this.name = recipe.name;
         this.tags = recipe.tags;

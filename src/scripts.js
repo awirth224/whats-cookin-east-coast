@@ -2,9 +2,7 @@
 //Imports
 import './styles.css';
 import apiCalls from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-
 import Recipe from '../src/classes/Recipe';
 import Ingredients from '../src/classes/Ingredients';
 import RecipeRepository from '../src/classes/RecipeRepository';
@@ -41,6 +39,24 @@ let apiReturnData
 
 
 //Functions
+function loadHandler(){
+    onLoadRecipe()
+    generateRandomRecipes()
+    generateAllRecipes()
+    getApiData()
+    console.log('returnAPiData', apiReturn.data)
+    
+}
+function getApiData() {
+    fetchData()
+    .then(data => {
+        console.log('data', data)
+        apiReturnData = data
+        console.log('apiReturn', apiReturnData)
+    })
+  
+}
+
 const getRandomIndex = array => {
     return Math.floor(Math.random() * array.length + 1);
 };
@@ -53,14 +69,6 @@ function showElement (showThis) {
     showThis.classList.remove("hidden")
 }
 
-function loadHandler(){
-    onLoadRecipe()
-    generateRandomRecipes()
-    generateAllRecipes()
-    getApiData()
-    console.log('returnAPiData', apiReturn.data)
-    
-}
 
 function clickHandler(){
     
@@ -183,15 +191,7 @@ function viewHome () {
     hideElement(selectedRecipeView)
 }
 
-function getApiData() {
-    fetchData()
-    .then(data => {
-        console.log('data', data)
-        apiReturnData = data
-        console.log('apiReturn', apiReturnData)
-    })
-  
-}
+
 
 //EventListener
 window.addEventListener("load", loadHandler())
