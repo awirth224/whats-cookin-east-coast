@@ -22,12 +22,16 @@ COLORS::after
   width: 100%;
 }
 
-#searchBar {
+.searchBar {
   border-radius: 10px;
+  color: rgb(216, 210, 210);
+  caret-color: black;
+  cursor: text;
   height: 3vh;
   justify-items: center;
   margin-top: 13px;
   margin-right: 20%;
+  opacity: 50%;
   width: 20vw;
 }
 
@@ -258,4 +262,9 @@ COLORS::after
 
 .hidden {
   display: none;
+}
+
+.disabled {
+  cursor: none;
+  opacity: 50%;
 }
