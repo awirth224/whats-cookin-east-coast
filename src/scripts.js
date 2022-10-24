@@ -54,10 +54,6 @@ function loadHandler(){
     generateAllRecipes()
 }
 
-function clickHandler(){
-    
-}
-
 function generateAllRecipes () {
     allRecipes = new RecipeRepository(recipeData)
 }
