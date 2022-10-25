@@ -1,3 +1,26 @@
 .hidden {
   display: none;
 }
+
+.name {
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+.cost {
+ font-size: 15px;
+}
+
+.ingredients-list {
+ font-size: 20px;
+}
+
+.instructions-list {
+  font-size: 18px;
+}
+
+.submit-search-favorites-button {
+  background-color: blue;
+  color: white;
+  border-radius: 8px;
+}
