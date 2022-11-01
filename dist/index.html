@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
-  <link rel="stylesheet" type="text/css" href="../src/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="src/styles.css">
 </head>
 <body>
   <header class="main-header">
-    <img class="logo-item" img src="../src/images/turing-logo.png" height="80px" width="80px">
-    <input id="searchBar" placeholder="Search"></input>
+    <img src="../src/images/turing-logo.png" alt="turing-logo" class="logo-item" height="80px" width="80px">
+    <input id="searchBar" class="search-bar" placeholder="Search"></input>
     <button class="submit-search-button header-button">Submit</button>
     <button class="view-all-recipes-button header-button">View all recipes</button>
     <button class="home-button hidden header-button">Home</button>
@@ -40,7 +40,7 @@
     <section class="saved-section">
       <div class="saved-box">
         <div class="saved-title">Saved</div>
-        <input id="searchFavorites" placeholder="Search"></input>
+        <input id="searchFavorites" class="saved-search-bar" placeholder="Search"></input>
         <button class="submit-search-favorites-button header-button">Submit</button>
         <div class="saved-recipes"></div>
       </div>
