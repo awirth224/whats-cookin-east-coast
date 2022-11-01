@@ -76,47 +76,6 @@
 justify-self: flex-end;
 }
 
-/* Footer */
-
-.main-footer {
-  align-items: center;
-  border:solid 2px #4D77FF;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.subscribe-title {
-  margin: 0% 0% 1% 1%;
-}
-
-.contact-information {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.button {
-  border-radius: 45%;
-  background-color: #4D77FF;
-  color: #56BBF1;
-  font-size: 12px;
-  height: 3vh;
-  width: 3vw;
-}
-
-.underline:hover {
-  color: #56BBF1;
-  text-decoration: underline;
-}
-
-.learn-more {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  width: 25vw;
-}
-
 .hidden {
   display: none;
 }
