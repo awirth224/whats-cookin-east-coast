@@ -83,6 +83,11 @@
   width: 20vh;
 }
 
+.random-name:hover {
+  color:#4D77FF;
+  text-decoration: underline;
+}
+
 /* Saved Section */
 .saved-section {
 justify-self: flex-end;
@@ -95,6 +100,27 @@ justify-self: flex-end;
 .submit-search-favorites-button {
   height: 3vh;
   width: 8vh;
+}
+
+/* ALL RECIPES */
+
+.all-recipe-list {
+  font-size: 14px;
+}
+
+.all-recipe-list:hover {
+  color:#4D77FF;
+  text-decoration: underline;
+}
+
+/* SELECTED RECIPES */
+
+.selected {
+  font-size: 10px;
+}
+
+.ingredient-item {
+  font-size: 10px;
 }
 
 .hidden {
