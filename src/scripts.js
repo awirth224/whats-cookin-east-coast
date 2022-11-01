@@ -6,7 +6,6 @@ import './images/turing-logo.png'
 
 import Recipe from '../src/classes/Recipe';
 import RecipeRepository from '../src/classes/RecipeRepository';
-import recipeData from '../src/data/recipes';
 import fetchData from '../src/apiCalls';
 
 //QuerySelector
