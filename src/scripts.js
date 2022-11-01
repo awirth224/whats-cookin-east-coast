@@ -85,7 +85,6 @@ function generateCurrentUser() {
     console.log("currentUser",currentUser)
 }
 
-
 function generateUsersList () {
     usersData.forEach((user) => {
       let userClass = new User (user)
@@ -93,7 +92,6 @@ function generateUsersList () {
     })
     console.log("usersList full of user class instances",usersList)
 }
-
 
 function generateAllRecipes () {
     allRecipes = new RecipeRepository(ingredientsData,recipeData)
@@ -124,11 +122,11 @@ function showMainRecipe(){
 
 function showMainRandomRecipes(){
     leftRandomImageCard.innerHTML = `<img class="left-random-image" id="${randomRecipes[0].id}" img src=${randomRecipes[0].image}>
-    <h1 class="left-random-name">${randomRecipes[0].name}</h1>`
+    <h1 class="left random-name">${randomRecipes[0].name}</h1>`
     middleRandomImageCard.innerHTML = `<img class="middle-random-image" id="${randomRecipes[1].id}" img src=${randomRecipes[1].image}>
-    <h1 class="middle-random-name">${randomRecipes[1].name}</h1>`
+    <h1 class="middle random-name">${randomRecipes[1].name}</h1>`
     rightRandomImageCard.innerHTML = `<img class="right-random-image" id="${randomRecipes[2].id}" img src=${randomRecipes[2].image}>
-    <h1 class="right-random-name">${randomRecipes[2].name}</h1>`
+    <h1 class="right random-name">${randomRecipes[2].name}</h1>`
 }
 
 function viewSelectedRecipe () {
@@ -147,10 +145,10 @@ function showSelectedRecipe() {
     selectedRecipeInfo.innerHTML = `
     <section class="selected-recipe-container">
     <img class="selected-recipe-image" img src=${selectedRecipe.image}>
-    <h1 class="name">${selectedRecipe.name}</h1>
-    <h2 class="cost">Cost: ${selectedRecipe.getIngredientsCost()} cent</h2>
-    <h3 class="ingredients-list"> Ingredients </h3>
-    <h4 class="instructions-list"> Instructions </h4>
+    <h1 class="selected name">${selectedRecipe.name}</h1>
+    <h2 class="selected cost">Cost: ${selectedRecipe.getIngredientsCost()} cent</h2>
+    <h3 class="selected ingredients-list"> Ingredients </h3>
+    <h4 class="selected instructions-list"> Instructions </h4>
     </section>`
     showInstructions()
     showIngredients()
@@ -232,7 +230,7 @@ function addRecipeToFavorites() {
 function viewAllRecipes () {
     showElement(allRecipesView)
     allRecipes.recipesList.forEach(element => 
-        allRecipesView.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`
+        allRecipesView.innerHTML+= `<h1 class="all-recipe-list" id=${element.id}>${element.name}</h1>`
     )
     hideElement(viewAllRecipesButton)
     hideElement(homeView)
