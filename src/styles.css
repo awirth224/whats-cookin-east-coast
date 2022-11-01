@@ -1,3 +1,122 @@
+/* COLORS
+#4D77FF Bright blue
+#56BBF1 light blue
+#5EE6EB aqua
+#F2FA5A electric yellow
+*/
+
+/* HEADER */
+.main-header {
+  align-items: flex-end;
+  border: solid 2px #4D77FF;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-start;
+}
+
+.header-button {
+  border-radius: 5%;
+  background-color: #4D77FF;
+  color: #56BBF1;
+  font-size: 12px;
+  height: 4vh;
+  margin-left: auto;
+  width: 13vh;
+}
+
+.header-button:hover {
+  color:aqua;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.margin {
+  margin-bottom: 1%;
+}
+
+.right-margin {
+  margin-right: 1%;
+}
+
+.disabled {
+  height: 4vh;
+  width: 13vh;
+}
+
+/* Main */
+.whole-page-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-view {
+  width: 75%;
+}
+
+.three-images {
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.card {
+  max-height: 30%;
+  max-width:  25%;
+}
+
+.left-random-image, .middle-random-image, .right-random-image {
+  height: 20vh;
+  width: 20vh;
+}
+
+/* Saved Section */
+.saved-section {
+justify-self: flex-end;
+}
+
+/* Footer */
+
+.main-footer {
+  align-items: center;
+  border:solid 2px #4D77FF;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.subscribe-title {
+  margin: 0% 0% 1% 1%;
+}
+
+.contact-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button {
+  border-radius: 45%;
+  background-color: #4D77FF;
+  color: #56BBF1;
+  font-size: 12px;
+  height: 3vh;
+  width: 3vw;
+}
+
+.underline:hover {
+  color: #56BBF1;
+  text-decoration: underline;
+}
+
+.learn-more {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+}
+
 .hidden {
   display: none;
 }
