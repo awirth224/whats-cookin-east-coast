@@ -5,6 +5,10 @@
 #F2FA5A electric yellow
 */
 
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 /* HEADER */
 .main-header {
   align-items: flex-end;
@@ -20,8 +24,16 @@
   color: #56BBF1;
   font-size: 12px;
   height: 4vh;
-  margin-left: auto;
+  margin-bottom: 1%;
   width: 13vh;
+}
+
+.search-bar {
+  margin-bottom: 1%;
+}
+
+.view-all-recipes-button {
+  margin: 0% 1% 1% auto;
 }
 
 .header-button:hover {
@@ -74,6 +86,15 @@
 /* Saved Section */
 .saved-section {
 justify-self: flex-end;
+}
+
+.saved-search-bar {
+  margin-bottom: 2%;
+}
+
+.submit-search-favorites-button {
+  height: 3vh;
+  width: 8vh;
 }
 
 .hidden {
