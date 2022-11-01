@@ -1,48 +1,68 @@
-
 //Imports
 import './styles.css';
-import apiCalls from './apiCalls';
+import apiCalls from './apiCalls'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
 import Recipe from '../src/classes/Recipe';
-import Ingredients from '../src/classes/Ingredients';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import recipeData from '../src/data/recipes';
 import fetchData from '../src/apiCalls';
 
 //QuerySelector
 const currentRecipeName = document.querySelector(".current-recipe-name")
-const currentRecipeImage = document.querySelector(".image-parent-main")
+const currentRecipeImage = document.querySelector(".current-recipe-image")
 const leftRandomImageCard = document.querySelector(".left-random-card")
 const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
 const tagSearchResults = document.querySelector(".tag-search-results")
 const nameSearchResults = document.querySelector(".name-search-results")
+const selectedRecipeInfo = document.querySelector(".selected-recipe-info")
+const savedRecipes = document.querySelector(".saved-recipes")
+const favoritesTagSearchResult = document.querySelector(".favorites-tag-search-results")
+const favoritesNameSearchResult = document.querySelector(".favorites-name-search-results")
 
-const viewAllRecipesButton = document.querySelector(".view-all-recipes")
+
+const viewAllRecipesButton = document.querySelector(".view-all-recipes-button")
 const homeButton = document.querySelector(".home-button")
 const searchButton = document.querySelector(".submit-search-button")
 const searchInput = document.querySelector("#searchBar")
+const addFavoriteButton = document.querySelector(".add-to-favorites-button")
+const favoritesSearchInput = document.querySelector("#searchFavorites")
+const searchFavoritesButton = document.querySelector(".submit-search-favorites-button")
 
 const allRecipesView = document.querySelector(".all-recipes-view")
 const homeView = document.querySelector(".home-view")
 const selectedRecipeView = document.querySelector(".selected-recipe-view")
 const searchedRecipeView = document.querySelector(".searched-recipe-view")
+const viewSearchedFavorites = document.querySelector(".view-searched-favorites-recipes")
+const viewSavedFavorites = document.querySelector(".saved-section")
 
-//Instances
+
+//Global Variables
 let currentRecipe
 let randomRecipes
 let allRecipes
 let selectedRecipe
-let apiReturnData
-// let newIngredientsData = new Ingredients(apiReturnData.ingredientsData)
-
-
+let ingredientsData
+let recipeData
+let usersData
+let usersList = []
+let currentUser
 
 //Functions
+const fetchApiCalls = () => {
+    apiCalls.fetchData().then(data => {
+      ingredientsData = data[0].ingredientsData;
+      recipeData = data[1].recipeData;
+      usersData = data[2].usersData;
+
+      loadHandler();
+    });
+  };
+
 const getRandomIndex = array => {
-    return Math.floor(Math.random() * array.length + 1);
+    return Math.floor(Math.random() * array.length);
 };
 
 function hideElement (hideThis) {
@@ -57,31 +77,41 @@ function loadHandler(){
     onLoadRecipe()
     generateRandomRecipes()
     generateAllRecipes()
-    getApiData()
-    console.log('returnAPiData', apiReturn.data)
-    
+    generateUsersList()
+    generateCurrentUser()
 }
 
-function clickHandler(){
-    
+function generateCurrentUser() {
+    currentUser = new User (usersList[getRandomIndex(usersList)]) 
+    console.log("currentUser",currentUser)
 }
+
+
+function generateUsersList () {
+    usersData.forEach((user) => {
+      let userClass = new User (user)
+      usersList.push(userClass)
+    })
+    console.log("usersList full of user class instances",usersList)
+}
+
 
 function generateAllRecipes () {
-    allRecipes = new RecipeRepository(recipeData)
+    allRecipes = new RecipeRepository(ingredientsData,recipeData)
 }
 
 function onLoadRecipe(){
-    currentRecipe = new Recipe(recipeData[getRandomIndex(recipeData)])
+    currentRecipe = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     showMainRecipe()
 }
 
 function generateRandomRecipes(){
     randomRecipes = []
-    let randomRecipe1 = new Recipe(recipeData[getRandomIndex(recipeData)])
+    let randomRecipe1 = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     randomRecipes.push(randomRecipe1)
-    let randomRecipe2 = new Recipe(recipeData[getRandomIndex(recipeData)])
+    let randomRecipe2 = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     randomRecipes.push(randomRecipe2)
-    let randomRecipe3 = new Recipe(recipeData[getRandomIndex(recipeData)])
+    let randomRecipe3 = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     randomRecipes.push(randomRecipe3)
 
     showMainRandomRecipes()
@@ -109,11 +139,13 @@ function viewSelectedRecipe () {
     showElement(selectedRecipeView)
     showElement(homeButton)
     showElement(viewAllRecipesButton)
+    hideElement(viewSavedFavorites)
+
     showSelectedRecipe()
 }
 
 function showSelectedRecipe() {
-    selectedRecipeView.innerHTML = `
+    selectedRecipeInfo.innerHTML = `
     <section class="selected-recipe-container">
     <img class="selected-recipe-image" img src=${selectedRecipe.image}>
     <h1 class="name">${selectedRecipe.name}</h1>
@@ -128,7 +160,7 @@ function showSelectedRecipe() {
 function showIngredients() {
     const selectedRecipeIngredients = document.querySelector(".ingredients-list")
 
-    selectedRecipe.ingredients.modifiedData.forEach(element =>
+    selectedRecipe.modifiedData.forEach(element =>
         selectedRecipeIngredients.innerHTML += 
         `<h3 class="ingredient-item">${element.quantity.amount} ${element.quantity.unit} ${element.name} <br></h3>`
     )
@@ -162,17 +194,52 @@ function viewSearchedRecipes() {
     hideElement(homeView)
     showElement(searchedRecipeView)
     showElement(homeButton)
+    hideElement(viewSavedFavorites)
+
+}
+
+function updateFavoritesBySearch() {
+    favoritesNameSearchResult.innerHTML = ""
+    favoritesTagSearchResult.innerHTML = ""
+    let searchTerm = favoritesSearchInput.value 
+    let tagResults = []
+    let nameResults = []
+    tagResults = currentUser.filterFavsByTag(searchTerm)
+    nameResults = currentUser.filterFavsByName(searchTerm)
+    if (nameResults.length === 0 && tagResults.length === 0) {
+        favoritesTagSearchResult.innerHTML = `<h1>There are no results for your search, please try a different search</h1>`
+    }
+    nameResults.forEach(element => 
+        favoritesNameSearchResult.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+    tagResults.forEach(element => 
+        favoritesTagSearchResult.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+    hideElement(selectedRecipeView)
+    hideElement(homeView)
+    hideElement(searchedRecipeView)
+    showElement(homeButton)
+    showElement(viewSearchedFavorites)
+    hideElement(viewSavedFavorites)
+}
+
+function addRecipeToFavorites() {
+    savedRecipes.innerHTML = ""
+
+    currentUser.favorites.forEach( element =>
+        savedRecipes.innerHTML += `<h1 id=${element.id}>${element.name}  </h1>`
+    )
+
 }
 
 function viewAllRecipes () {
+    showElement(allRecipesView)
     allRecipes.recipesList.forEach(element => 
         allRecipesView.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`
     )
     hideElement(viewAllRecipesButton)
     hideElement(homeView)
     hideElement(selectedRecipeView)
-    showElement(allRecipesView)
     showElement(homeButton)
+    hideElement(viewSavedFavorites)
 }
 
 function viewHome () {
@@ -181,6 +248,7 @@ function viewHome () {
     hideElement(homeButton)
     hideElement(allRecipesView)
     hideElement(selectedRecipeView)
+    showElement(viewSavedFavorites)
 }
 
 function getApiData() {
@@ -194,7 +262,7 @@ function getApiData() {
 }
 
 //EventListener
-window.addEventListener("load", loadHandler())
+window.addEventListener("load", fetchApiCalls())
 homeButton.addEventListener("click", function(event) {
     event.preventDefault()
     viewHome()
@@ -244,4 +312,22 @@ rightRandomImageCard.addEventListener("click", function (event) {
 searchButton.addEventListener("click", function(event){
     event.preventDefault()
     viewSearchedRecipes()
+})
+
+addFavoriteButton.addEventListener("click", function (event) {
+    event.preventDefault()
+
+    if (currentUser.favorites.includes(selectedRecipe))
+    {
+        let indexOfRecipe = currentUser.favorites.indexOf(selectedRecipe)
+        currentUser.favorites.splice(indexOfRecipe, 1)
+    } else {
+        currentUser.addToFavorites(selectedRecipe)
+    }
+    addRecipeToFavorites()
+})
+
+searchFavoritesButton.addEventListener("click", function (event) {
+    event.preventDefault()
+    updateFavoritesBySearch()
 })
