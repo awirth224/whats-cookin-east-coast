@@ -2,18 +2,18 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
-  <link rel="stylesheet" type="text/css" href="../src/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="src/styles.css">
 </head>
 <body>
   <header class="main-header">
-    <img class="logo-item" img src="../src/images/turing-logo.png" height:5px>
-    <input id="searchBar" placeholder="Search"></input>
+    <img src="../dist/images/turing-logo.png" alt="turing-logo" class="logo-item" height="80px" width="80px">
+    <input id="searchBar" class="search-bar" placeholder="Search"></input>
     <button class="submit-search-button header-button">Submit</button>
     <button class="view-all-recipes-button header-button">View all recipes</button>
-    <button class="login-button header-button">Login</button>
     <button class="home-button hidden header-button">Home</button>
+    <button class="user-pantry header-button">View My Pantry</button>
   </header>
   <section class="whole-page-container">
     <section class="home-view">
@@ -25,25 +25,25 @@
       <section class="three-images bottom-left-main">
           <div class="left-random-card card">
             <img class="left-random-image random-image" img src="https://spoonacular.com/recipeImages/595736-556x370.jpg"/>
-            <h1 class="left-random-name"></h1>
+            <h1 class="left random-name"></h1>
           </div>
           <div class="middle-random-card card">
             <img class="middle-random-image random-image" img src="https://spoonacular.com/recipeImages/678353-556x370.jpg"/>
-            <h1 class="middle-random-name"></h1>
+            <h1 class="middle random-name"></h1>
           </div>
           <div class="right-random-card card">
             <img class="right-random-image random-image" img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"/>
-            <h1 class="right-random-name"></h1>
+            <h1 class="right random-name"></h1>
           </div>
         </section>
       </section>
     </section>
     <section class="saved-section">
       <div class="saved-box">
-        <div class="saved-title">Saved</div>
-        <input id="searchFavorites" placeholder="Search"></input>
+        <div class="saved-title">Recipes to Cook</div>
+        <input id="searchFavorites" class="saved-search-bar" placeholder="Search"></input>
         <button class="submit-search-favorites-button header-button">Submit</button>
-        <div class = "saved-recipes"></div>
+        <div class="saved-recipes"></div>
       </div>
     </section>
   </section>
@@ -56,34 +56,19 @@
     <section class="tag-search-results"></section>
     <section class="name-search-results"></section>
   </section>
-  <section class ="view-searched-favorites-recipes hidden">
+  <section class="view-searched-favorites-recipes hidden">
     <section class="favorites-tag-search-results"></section>
     <section class="favorites-name-search-results"></section>
   </section>
-  <footer class="main-footer">
-    <div class="subscribe-title">
-      <h1>Subscribe</h1>
-      <input placeholder="Enter Email Here!">
-    </div>
-    <div class="contact-information">
-      <div class="connect-with-us">Connect with us now</div>
-      <div class="all-the-connect-buttons">
-        <button class="facebook-button connect-button button">FB</button>
-        <button class="twitter-button connect-button button">TW</button>
-        <button class="instagram-button connect-button button">IG</button>
-        <button class="youtube-button connect-button button">YT</button>
-      </div>
-    </div>
-    <div class="learn-more">
-      <div class="learn-more-title">Learn More</div>
-        <div class="all-the-learn-more-links">
-          <button class="contact-us-button underline">Contact Us</button>
-          <button class="about-us-button underline">About Us</button>
-          <button class="privacy-policy underline">Privacy Policy</button>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <section class="user-pantry-view hidden">
+    <label for="name">Ingredient Name</label>
+    <input  type="text" id="name" name="name" minlength="4" maxlength="10" size="10" class="input">
+    <label for="amount">Amount</label>
+    <input type="text" id="name" name="name" minlength="1" maxlength="2" size="10" class="input">
+    <label for="measurement">Unit of Measurement</label>
+    <input type="text" id="name" name="name" minlength="1" maxlength="6" size="10" class="input">
+    <button class="add-to-pantry">Add Ingredient</button>
+  </section>
 </body>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
