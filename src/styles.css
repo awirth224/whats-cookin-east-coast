@@ -74,6 +74,10 @@
   width: 100%;
 }
 
+.current-recipe-image:hover {
+  transform: scale(1.1);
+}
+
 .three-images {
   display: flex;
   gap: 1.5rem;
@@ -378,7 +382,7 @@ margin: 2% 5% 0% 0%;
 
   /* PANTRY VIEW */
 
-  
+
 
 }
 

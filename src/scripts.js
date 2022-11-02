@@ -6,6 +6,7 @@ import './images/turing-logo.png'
 import Recipe from '../src/classes/Recipe';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import fetchData from '../src/apiCalls';
+import User from '../src/classes/User'
 
 //QuerySelector
 const currentRecipeName = document.querySelector(".current-recipe-name")
@@ -81,7 +82,6 @@ function loadHandler() {
 
 function generateCurrentUser() {
     currentUser = new User (usersList[getRandomIndex(usersList)]) 
-    console.log("currentUser",currentUser)
 }
 
 function generateUsersList () {
@@ -89,7 +89,6 @@ function generateUsersList () {
       let userClass = new User (user)
       usersList.push(userClass)
     })
-    console.log("usersList full of user class instances",usersList)
 }
 
 function generateAllRecipes () {
@@ -249,16 +248,6 @@ function viewHome() {
     hideElement(allRecipesView)
     hideElement(selectedRecipeView)
     showElement(viewSavedFavorites)
-}
-
-function getApiData() {
-    fetchData()
-    .then(data => {
-        console.log('data', data)
-        apiReturnData = data
-        console.log('apiReturn', apiReturnData)
-    })
-  
 }
 
 //EventListener
