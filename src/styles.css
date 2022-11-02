@@ -174,7 +174,72 @@ margin: 2% 5% 0% 0%;
 }
 
 @media (max-width: 468px) {
+  /* HEADER */
+
+  .main-header {
+    gap: 1rem;
+  }
+
+  .search-bar {
+    width: 18vw;
+  }
+
+  .submit-search-button {
+    height: 4vh;
+    width: 9vh;
+  }
   
+  .view-all-recipes-button, .home-button {
+    height: 4vh;
+    margin: 0% 1% 1% auto;
+    width: 18vh;
+  }
+
+  /* MAIN */
+
+  
+  .whole-page-container {
+    flex-direction: column;
+  }
+
+  .home-view {
+    width:100%;
+  }
+
+  .current-recipe-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 1%;
+  }
+
+  .three-images {
+    justify-content: space-between;
+  }
+
+  .card {
+    flex-wrap: wrap;
+    margin-right: 1%;
+    max-height: 25%;
+    max-width:  45%;
+  }
+
+  .random-name {
+    font-size: 10px;
+  }
+
+  /* SAVED SECTION */
+
+  .saved-title {
+    font-size: 14px;
+    margin-bottom: 2%;
+    margin-top: 4%;
+  }
+
+  .submit-search-favorites-button {
+    height: 3vh;
+    width: 9vh;
+  }
+
 }
 
 @media (min-width: 768px) {
