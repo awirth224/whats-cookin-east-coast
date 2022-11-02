@@ -3,7 +3,6 @@ import './styles.css';
 import apiCalls from './apiCalls'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-
 import Recipe from '../src/classes/Recipe';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import fetchData from '../src/apiCalls';
@@ -265,57 +264,56 @@ homeButton.addEventListener("click", function(event) {
     viewHome()
 })
 
-viewAllRecipesButton.addEventListener("click", function (event){
+viewAllRecipesButton.addEventListener("click", function(event) {
     event.preventDefault()
     viewAllRecipes()
 })
 
-allRecipesView.addEventListener("click", function (event) {
+allRecipesView.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-searchedRecipeView.addEventListener("click", function (event) {
+searchedRecipeView.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-currentRecipeImage.addEventListener("click", function (event) {
+currentRecipeImage.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-leftRandomImageCard.addEventListener("click", function (event) {
+leftRandomImageCard.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-middleRandomImageCard.addEventListener("click", function (event) {
+middleRandomImageCard.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-rightRandomImageCard.addEventListener("click", function (event) {
+rightRandomImageCard.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-searchButton.addEventListener("click", function(event){
+searchButton.addEventListener("click", function(event) {
     event.preventDefault()
     viewSearchedRecipes()
 })
 
-addFavoriteButton.addEventListener("click", function (event) {
+addFavoriteButton.addEventListener("click", function(event) {
     event.preventDefault()
 
-    if (currentUser.favorites.includes(selectedRecipe))
-    {
+    if (currentUser.favorites.includes(selectedRecipe)) {
         let indexOfRecipe = currentUser.favorites.indexOf(selectedRecipe)
         currentUser.favorites.splice(indexOfRecipe, 1)
     } else {
@@ -324,7 +322,7 @@ addFavoriteButton.addEventListener("click", function (event) {
     addRecipeToFavorites()
 })
 
-searchFavoritesButton.addEventListener("click", function (event) {
+searchFavoritesButton.addEventListener("click", function(event) {
     event.preventDefault()
     updateFavoritesBySearch()
 })
