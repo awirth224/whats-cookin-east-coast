@@ -180,12 +180,12 @@ function viewSearchedRecipes() {
     tagResults = allRecipes.filterByTag(searchTerm)
     nameResults = allRecipes.filterByName(searchTerm)
     if (nameResults.length === 0 && tagResults.length === 0) {
-        tagSearchResults.innerHTML = `<h1>There are no results for your search, please try a different search</h1>`
+        tagSearchResults.innerHTML = `<h1>There are no results matching what you entered, please try a different search</h1>`
     }
     nameResults.forEach(element => 
-        nameSearchResults.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+        nameSearchResults.innerHTML+= `<h1 class="searched-recipe" id=${element.id}>${element.name}</h1>`)
     tagResults.forEach(element => 
-        tagSearchResults.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+        tagSearchResults.innerHTML+= `<h1 class="searched-recipe" id=${element.id}>${element.name}</h1>`)
     hideElement(selectedRecipeView)
     hideElement(homeView)
     showElement(searchedRecipeView)
