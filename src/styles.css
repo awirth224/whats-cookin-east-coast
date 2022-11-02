@@ -152,6 +152,12 @@ margin: 2% 5% 0% 0%;
   font-size: large;
 }
 
+.searched-recipe:hover {
+  color: #4D77FF;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .hidden {
   display: none;
 }
