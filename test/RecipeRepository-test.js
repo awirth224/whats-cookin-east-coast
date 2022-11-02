@@ -704,7 +704,9 @@ describe('RecipeRepository', () => {
   });
 
   it('Should return all the recipes that match the filter tag', () => {
-    expect(repo1.filterByTag('snack')).to.deep.equal([repo1.recipesList[0]]);
+    expect(repo1.filterByTag('SnAcK')).to.deep.equal([repo1.recipesList[0]])
+    expect(repo1.filterByTag('munch')).to.deep.equal([])
+
   });
 
   it('Should have a method that filters by name', () => {
@@ -712,6 +714,7 @@ describe('RecipeRepository', () => {
   });
 
   it('Should return all the recipes that match the filter tag', () => {
-    expect(repo1.filterByName("Loaded Chocolate Chip Pudding Cookie Cups")).to.deep.equal([repo1.recipesList[0]]);
+    expect(repo1.filterByName("CoOkIe")).to.deep.equal([repo1.recipesList[0]])
+    expect(repo1.filterByName("not a real search")).to.deep.equal([]);
   });
 })
