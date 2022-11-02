@@ -681,7 +681,8 @@ describe('User', () => {
   it('Should return all the recipes in favorites array that match the filter tag', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
-    expect(user1.filterFavsByTag('snack')).to.deep.equal([recipe1]);
+    expect(user1.filterFavsByTag('SnAcK')).to.deep.equal([recipe1])
+    expect(user1.filterFavsByTag('not a real search')).to.deep.equal([])
   });
 
   it('Should have a method that filters by name', () => {
@@ -691,7 +692,7 @@ describe('User', () => {
   it('Should return all the recipes in favorites array that match the filter name', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
-    expect(user1.filterFavsByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal([recipe2]);
+    expect(user1.filterFavsByName('MaPlE')).to.deep.equal([recipe2])
+    expect(user1.filterFavsByName('not a real search')).to.deep.equal([]);
   });
-
 })

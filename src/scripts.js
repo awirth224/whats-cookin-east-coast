@@ -82,16 +82,13 @@ function loadHandler(){
 
 function generateCurrentUser() {
     currentUser = new User (usersList[getRandomIndex(usersList)]) 
-    console.log("currentUser",currentUser)
 }
-
 
 function generateUsersList () {
     usersData.forEach((user) => {
       let userClass = new User (user)
       usersList.push(userClass)
     })
-    console.log("usersList full of user class instances",usersList)
 }
 
 

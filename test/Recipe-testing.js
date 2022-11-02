@@ -305,7 +305,7 @@ describe('Recipe', function() {
     });
 
     it('should have a method that returns the cost of the recipe', function() {
-        expect(recipe.getIngredientsCost()).to.deep.equal(17776);
+        expect(recipe.getIngredientsCost()).to.equal(17776);
     });
 
     it('should have a method that returns the recipe instructions', function() {
