@@ -116,6 +116,7 @@
 
 .random-name:hover {
   color:#4D77FF;
+  cursor: pointer;
   text-decoration: underline;
 }
 
@@ -215,10 +216,14 @@ margin: 2% 5% 0% 0%;
     width: 9vh;
   }
   
-  .view-all-recipes-button, .home-button {
+  .view-all-recipes-button, .home-button, .user-pantry {
     height: 4vh;
     margin: 0% 1% 1% auto;
     width: 18vh;
+  }
+
+  .user-pantry {
+    margin: 0% 1% 1% 1%;
   }
   
   .header-button:hover {
@@ -293,6 +298,7 @@ margin: 2% 5% 0% 0%;
   }
   
   .random-name:hover {
+    cursor: pointer;
     color:#4D77FF;
     text-decoration: underline;
   }
@@ -407,10 +413,14 @@ margin: 2% 5% 0% 0%;
     width: 6vh;
   }
   
-  .view-all-recipes-button, .home-button {
+  .view-all-recipes-button, .home-button, .user-pantry {
     height: 2vh;
     margin: 0% 1% 1% auto;
     width: 9vh;
+  }
+
+  .user-pantry {
+    margin: 0% 1% 1% 1%;
   }
   
   .header-button:hover {
@@ -485,6 +495,7 @@ margin: 2% 5% 0% 0%;
   }
   
   .random-name:hover {
+    cursor: pointer;
     color:#4D77FF;
     text-decoration: underline;
   }
