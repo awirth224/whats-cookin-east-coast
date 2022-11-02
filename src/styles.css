@@ -35,7 +35,7 @@
   width: 9vh;
 }
 
-.view-all-recipes-button {
+.view-all-recipes-button, .home-button {
   height: 4vh;
   margin: 0% 1% 1% auto;
   width: 15vh;
@@ -142,6 +142,17 @@ margin: 2% 5% 0% 0%;
 }
 
 /* SELECTED RECIPES */
+
+.add-to-favorites-button {
+  border-radius: 5%;
+  background-color: #4D77FF;
+  color: #5EE6EB;
+  font-size: 15px;
+  height: 6vh;
+  margin-bottom: 1%;
+  margin-top: 2%;
+  width: 20vw;
+}
 
 .selected {
   font-size: 14px;
