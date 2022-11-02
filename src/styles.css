@@ -21,38 +21,30 @@
 .header-button {
   border-radius: 5%;
   background-color: #4D77FF;
-  color: #56BBF1;
+  color: #5EE6EB;
   font-size: 12px;
-  height: 4vh;
   margin-bottom: 1%;
-  width: 13vh;
 }
 
 .search-bar {
   margin-bottom: 1%;
 }
 
+.submit-search-button {
+  height: 3vh;
+  width: 9vh;
+}
+
 .view-all-recipes-button {
+  height: 4vh;
   margin: 0% 1% 1% auto;
+  width: 15vh;
 }
 
 .header-button:hover {
-  color:aqua;
+  color: rgb(159, 242, 245);
   cursor: pointer;
   text-decoration: underline;
-}
-
-.margin {
-  margin-bottom: 1%;
-}
-
-.right-margin {
-  margin-right: 1%;
-}
-
-.disabled {
-  height: 4vh;
-  width: 13vh;
 }
 
 /* Main */
@@ -145,19 +137,29 @@ margin: 2% 5% 0% 0%;
 
 .all-recipe-list:hover {
   color:#4D77FF;
+  cursor: pointer;
   text-decoration: underline;
 }
 
 /* SELECTED RECIPES */
 
 .selected {
-  font-size: 10px;
+  font-size: 14px;
+  overflow: scroll;
 }
 
 .ingredient-item {
-  font-size: 10px;
+  font-size: large;
 }
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 468px) {
+  
+}
+
+@media (min-width: 768px) {
+
 }
