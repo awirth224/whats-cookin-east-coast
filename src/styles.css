@@ -64,6 +64,7 @@
 }
 
 .current-recipe-image {
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .2);
   object-fit: cover;
   margin-bottom: 2%;
   width: 100%;
@@ -174,19 +175,37 @@ margin: 2% 5% 0% 0%;
 }
 
 
+
 /* BREAKPOINT RULES */
 
 @media (max-width: 468px) {
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
+  
   /* HEADER */
 
   .main-header {
+    align-items: flex-end;
+    border: solid 2px #4D77FF;
+    display: flex;
     gap: 1rem;
+    justify-content: flex-start;
   }
-
+  
+  .header-button {
+    border-radius: 5%;
+    background-color: #4D77FF;
+    color: #5EE6EB;
+    font-size: 12px;
+    margin-bottom: 1%;
+  }
+  
   .search-bar {
-    width: 18vw;
+    margin-bottom: 1%;
+    width: 18vh;
   }
-
+  
   .submit-search-button {
     height: 4vh;
     width: 9vh;
@@ -197,35 +216,141 @@ margin: 2% 5% 0% 0%;
     margin: 0% 1% 1% auto;
     width: 18vh;
   }
-
-  /* MAIN */
-
   
+  .header-button:hover {
+    color: rgb(159, 242, 245);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  /* Main */
+
   .whole-page-container {
+    display: flex;
     flex-direction: column;
-  }
-
-  .home-view {
-    width:100%;
-  }
-
-  .current-recipe-name {
-    font-size: 16px;
-  }
-
-  .three-images {
     justify-content: space-between;
   }
-
+  
+  .home-view {
+    width: 100%;
+  }
+  
+  .current-recipe-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 1%;
+  }
+  
+  .current-recipe-image {
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .2);
+    object-fit: cover;
+    margin-bottom: 2%;
+    width: 100%;
+  }
+  
+  .three-images {
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: auto;
+  }
+  
   .card {
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .2);
+    display: flex;
     flex-wrap: wrap;
     margin-right: 1%;
     max-height: 25%;
     max-width:  45%;
   }
-
+  
+  .card:hover {
+    transform: scale(1.1);
+  }
+  
+  .card > img {
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    max-height: 150px;
+    width: 100%;
+  }
+  
+  .left-random-image, .middle-random-image, .right-random-image {
+    height: 35vh;
+    width: 35vh;
+  }
+  
   .random-name {
     font-size: 10px;
+    margin-left: 2%;
+  }
+  
+  .random-name:hover {
+    color:#4D77FF;
+    text-decoration: underline;
+  }
+  
+  /* Saved Section */
+
+  .saved-section {
+  justify-self: flex-end;
+  margin: 2% 5% 0% 0%;
+  }
+  
+  .saved-search-bar {
+    margin-bottom: 2%;
+  }
+  
+  .submit-search-favorites-button {
+    height: 3vh;
+    width: 8vh;
+  }
+  
+  /* ALL RECIPES */
+  
+  .all-recipe-list {
+    font-size: 14px;
+  }
+  
+  .all-recipe-list:hover {
+    color:#4D77FF;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  /* SELECTED RECIPES */
+  
+  .add-to-favorites-button {
+    border-radius: 5%;
+    background-color: #4D77FF;
+    color: #5EE6EB;
+    font-size: 15px;
+    height: 6vh;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    width: 20vw;
+  }
+  
+  .selected {
+    font-size: 14px;
+    overflow: scroll;
+  }
+  
+  .ingredient-item {
+    font-size: large;
+  }
+  
+  .searched-recipe:hover {
+    color: #4D77FF;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .hidden {
+    display: none;
   }
 
   /* SAVED SECTION */
@@ -244,20 +369,35 @@ margin: 2% 5% 0% 0%;
 }
 
 
-
-@media (min-width: 768px) {
-
+@media (max-width: 768px) {
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
+ 
   /* HEADER */
 
   .main-header {
+    align-items: flex-end;
+    border: solid 2px #4D77FF;
+    display: flex;
     gap: 1rem;
+    justify-content: flex-start;
   }
-
+  
+  .header-button {
+    border-radius: 5%;
+    background-color: #4D77FF;
+    color: #5EE6EB;
+    font-size: 12px;
+    margin-bottom: 1%;
+  }
+  
   .search-bar {
+    margin-bottom: 1%;
     margin-left: 5%;
-    width: 15vw;
+    width: 15vh;
   }
-
+  
   .submit-search-button {
     height: 2vh;
     width: 6vh;
@@ -268,38 +408,144 @@ margin: 2% 5% 0% 0%;
     margin: 0% 1% 1% auto;
     width: 9vh;
   }
-
-  /* MAIN */
+  
+  .header-button:hover {
+    color: rgb(159, 242, 245);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  /* Main */
 
   .whole-page-container {
+    display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
-
+  
   .home-view {
-    width:100%;
+    width: 100%;
   }
-
+  
   .current-recipe-name {
     font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 1%;
   }
-
+  
+  .current-recipe-image {
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .2);
+    object-fit: cover;
+    margin-bottom: 2%;
+    width: 100%;
+  }
+  
+  .three-images {
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-left: auto;
+  }
+  
+  .card {
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .2);
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 1%;
+    max-height: 60%;
+    max-width:  29%;
+  }
+  
+  .card:hover {
+    transform: scale(1.1);
+  }
+  
+  .card > img {
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    max-height: 150px;
+    width: 100%;
+  }
+  
+  .left-random-image, .middle-random-image, .right-random-image {
+    height: 35vh;
+    width: 35vh;
+  }
+  
   .random-name {
     font-size: 10px;
+    margin-left: 2%;
   }
-
-  /* SAVED SECTION */
+  
+  .random-name:hover {
+    color:#4D77FF;
+    text-decoration: underline;
+  }
+  
+  /* Saved Section */
 
   .saved-section {
-    margin: 10% 0% 0% 1%;
+  justify-self: flex-end;
+  margin: 10% 0% 0% 1%;
   }
 
   .saved-title {
     margin-bottom: 2%;
   }
-
+  
+  .saved-search-bar {
+    margin-bottom: 2%;
+  }
+  
   .submit-search-favorites-button {
     height: 2vh;
-    width: 9vw;
+    width: 9vh;
   }
-
+  
+  /* ALL RECIPES */
+  
+  .all-recipe-list {
+    font-size: 14px;
+  }
+  
+  .all-recipe-list:hover {
+    color:#4D77FF;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  /* SELECTED RECIPES */
+  
+  .add-to-favorites-button {
+    border-radius: 5%;
+    background-color: #4D77FF;
+    color: #5EE6EB;
+    font-size: 15px;
+    height: 6vh;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    width: 20vw;
+  }
+  
+  .selected {
+    font-size: 14px;
+    overflow: scroll;
+  }
+  
+  .ingredient-item {
+    font-size: large;
+  }
+  
+  .searched-recipe:hover {
+    color: #4D77FF;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .hidden {
+    display: none;
+  }
 }
