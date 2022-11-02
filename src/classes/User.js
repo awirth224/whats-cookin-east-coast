@@ -20,14 +20,19 @@ class User {
   }
 
   filterFavsByTag(tag) {
-    let favByTagResult = this.favorites.filter(favorites => favorites.tags.includes(tag))
+    let favByTagResult = this.favorites.filter((favorites) => {
+      let upperCaseTags = favorites.tags.map(word => word.toUpperCase())
+      if (upperCaseTags.includes(tag.toUpperCase())){
+        return true
+      }
+    })
     return favByTagResult
   }
 
   filterFavsByName(name) {
-     let favByNameResult = this.favorites.filter(favorites => favorites.name.includes(name))
+     let favByNameResult = this.favorites.filter(favorites => favorites.name.toUpperCase().includes(name.toUpperCase()))
     return favByNameResult
   }
-}
+} 
 
 export default User
