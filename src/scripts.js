@@ -71,7 +71,7 @@ function showElement (showThis) {
     showThis.classList.remove("hidden")
 }
 
-function loadHandler(){
+function loadHandler() {
     onLoadRecipe()
     generateRandomRecipes()
     generateAllRecipes()
@@ -96,12 +96,12 @@ function generateAllRecipes () {
     allRecipes = new RecipeRepository(ingredientsData,recipeData)
 }
 
-function onLoadRecipe(){
+function onLoadRecipe() {
     currentRecipe = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     showMainRecipe()
 }
 
-function generateRandomRecipes(){
+function generateRandomRecipes() {
     randomRecipes = []
     let randomRecipe1 = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     randomRecipes.push(randomRecipe1)
@@ -113,13 +113,13 @@ function generateRandomRecipes(){
     showMainRandomRecipes()
 }
 
-function showMainRecipe(){
+function showMainRecipe() {
     currentRecipeName.innerHTML = `${currentRecipe.name}`
     currentRecipeImage.innerHTML = `<img class="current-recipe-image" id="${currentRecipe.id}" img
     src=${currentRecipe.image}>`
 }
 
-function showMainRandomRecipes(){
+function showMainRandomRecipes() {
     leftRandomImageCard.innerHTML = `<img class="left-random-image" id="${randomRecipes[0].id}" img src=${randomRecipes[0].image}>
     <h1 class="left random-name">${randomRecipes[0].name}</h1>`
     middleRandomImageCard.innerHTML = `<img class="middle-random-image" id="${randomRecipes[1].id}" img src=${randomRecipes[1].image}>
@@ -128,7 +128,7 @@ function showMainRandomRecipes(){
     <h1 class="right random-name">${randomRecipes[2].name}</h1>`
 }
 
-function viewSelectedRecipe () {
+function viewSelectedRecipe() {
     hideElement(homeView)
     hideElement(searchedRecipeView)
     hideElement(allRecipesView)
@@ -226,7 +226,7 @@ function addRecipeToFavorites() {
 
 }
 
-function viewAllRecipes () {
+function viewAllRecipes() {
     showElement(allRecipesView)
     allRecipes.recipesList.forEach(element => 
         allRecipesView.innerHTML+= `<h1 class="all-recipe-list" id=${element.id}>${element.name}</h1>`
@@ -238,7 +238,7 @@ function viewAllRecipes () {
     hideElement(viewSavedFavorites)
 }
 
-function viewHome () {
+function viewHome() {
     showElement(homeView)
     showElement(viewAllRecipesButton)
     hideElement(homeButton)
