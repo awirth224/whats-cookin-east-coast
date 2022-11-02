@@ -65,6 +65,12 @@
   width: 75%;
 }
 
+.current-recipe-image {
+  object-fit: cover;
+  margin-bottom: 2%;
+  width: 100%;
+}
+
 .three-images {
   display: flex;
   gap: 1.5rem;
@@ -74,6 +80,7 @@
 }
 
 .card {
+  margin-right: 1%;
   max-height: 30%;
   max-width:  25%;
 }
@@ -91,6 +98,7 @@
 /* Saved Section */
 .saved-section {
 justify-self: flex-end;
+margin: 2% 5% 0% 0%;
 }
 
 .saved-search-bar {
