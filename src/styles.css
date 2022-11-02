@@ -173,6 +173,9 @@ margin: 2% 5% 0% 0%;
   display: none;
 }
 
+
+/* BREAKPOINT RULES */
+
 @media (max-width: 468px) {
   /* HEADER */
 
@@ -208,8 +211,6 @@ margin: 2% 5% 0% 0%;
 
   .current-recipe-name {
     font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 1%;
   }
 
   .three-images {
@@ -242,6 +243,63 @@ margin: 2% 5% 0% 0%;
 
 }
 
+
+
 @media (min-width: 768px) {
+
+  /* HEADER */
+
+  .main-header {
+    gap: 1rem;
+  }
+
+  .search-bar {
+    margin-left: 5%;
+    width: 15vw;
+  }
+
+  .submit-search-button {
+    height: 2vh;
+    width: 6vh;
+  }
+  
+  .view-all-recipes-button, .home-button {
+    height: 2vh;
+    margin: 0% 1% 1% auto;
+    width: 9vh;
+  }
+
+  /* MAIN */
+
+  .whole-page-container {
+    flex-direction: column;
+  }
+
+  .home-view {
+    width:100%;
+  }
+
+  .current-recipe-name {
+    font-size: 20px;
+  }
+
+  .random-name {
+    font-size: 10px;
+  }
+
+  /* SAVED SECTION */
+
+  .saved-section {
+    margin: 10% 0% 0% 1%;
+  }
+
+  .saved-title {
+    margin-bottom: 2%;
+  }
+
+  .submit-search-favorites-button {
+    height: 2vh;
+    width: 9vw;
+  }
 
 }
