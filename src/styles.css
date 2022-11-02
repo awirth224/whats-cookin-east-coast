@@ -35,10 +35,14 @@
   width: 9vh;
 }
 
-.view-all-recipes-button, .home-button {
+.view-all-recipes-button, .home-button, .user-pantry {
   height: 4vh;
   margin: 0% 1% 1% auto;
   width: 15vh;
+}
+
+.user-pantry {
+  margin: 0% 1% 1% 1%;
 }
 
 .header-button:hover {
