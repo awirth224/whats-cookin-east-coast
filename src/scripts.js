@@ -221,9 +221,9 @@ function addRecipeToFavorites() {
 
     currentUser.favorites.forEach( element =>
         savedRecipes.innerHTML += `
-        <h1 id=${element.id}>${element.name}</h1>
-        <input type="checkbox" id="cookedRecipe" name="recipe" value="cooked">
-        <label for="cooked" class="checkbox-labe">Cooked</>
+        <h1 class="added-recipe" id=${element.id}>${element.name}</h1>
+        <input type="checkbox" id="cookedRecipe" name="recipe" value="cooked class="checkbox">
+        <label for="cooked" class="checkbox-label">Cooked</>
         `
     )
 
