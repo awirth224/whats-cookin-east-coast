@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import User from '../src/classes/User';
 import Recipe from '../src/classes/Recipe';
 import usersData from '../src/data/users';
+import ingredientsData from '../src/data/ingredients';
 
 describe('User', () => {
   let user1 
@@ -405,7 +406,7 @@ describe('User', () => {
         }
       ]
     })
-    recipe1 = {
+    recipe1 = new Recipe(ingredientsData,  {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
       "ingredients": [
@@ -522,8 +523,8 @@ describe('User', () => {
         "antipasto",
         "hor d'oeuvre"
       ]
-    }
-    recipe2 = {
+    })
+    recipe2 = new Recipe(ingredientsData, {
       "id": 678353,
       "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
       "ingredients": [
@@ -625,7 +626,7 @@ describe('User', () => {
         "main dish",
         "dinner"
       ]
-    }
+    })
   })
 
   it('Should be a function', () => {
@@ -694,4 +695,9 @@ describe('User', () => {
     expect(user1.filterFavsByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal([recipe2]);
   });
 
+  it.only('Should be able to delete used ingredients', () => {
+    user1.addToFavorites(recipe1)
+    user1.addToFavorites(recipe2)
+    expect(user1.subtractFromPantry(recipe1)).to.equal(8.5)
+  });
 })

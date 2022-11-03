@@ -27,7 +27,41 @@ class User {
   filterFavsByName(name) {
      let favByNameResult = this.favorites.filter(favorites => favorites.name.includes(name))
     return favByNameResult
+    
   }
+
+subtractFromPantry(recipe){
+  const formattedRecipe = recipe.recipeIngredients.reduce((formattedList, item) => {
+    formattedList[item.id] = item.quantity.amount
+    return formattedList
+  },{})
+  console.log(this.pantry)
+  this.pantry = (this.pantry.map(item => {
+    if(formattedRecipe[item.ingredient]){
+      return {ingredient: item.ingredient, amount: item.amount - formattedRecipe[item.ingredient]}
+    } else {
+      return item
+    }
+  }))
+  
+console.log('after', this.pantry)
 }
+
+}
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
 
 export default User
