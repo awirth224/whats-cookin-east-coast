@@ -71,11 +71,11 @@
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .2);
   object-fit: cover;
   margin-bottom: 2%;
-  width: 100%;
+  width: 99%;
 }
 
 .current-recipe-image:hover {
-  transform: scale(1.1);
+  transform: scale(1.01);
 }
 
 .three-images {
@@ -125,6 +125,13 @@
 }
 
 /* Saved Section */
+.saved-title {
+  border-bottom: solid 2px #4D77FF;
+  font-size: 30px;
+  margin-bottom: 5%;
+  width: 100%;
+}
+
 .saved-section {
 justify-self: flex-end;
 margin: 2% 5% 0% 0%;
@@ -137,6 +144,25 @@ margin: 2% 5% 0% 0%;
 .submit-search-favorites-button {
   height: 3vh;
   width: 8vh;
+}
+
+.added-recipe {
+  font-size: 16px;
+  margin-left: 5%
+}
+
+.added-recipe:hover {
+  color:#4D77FF;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.checkbox {
+  margin-left: 5%;
+}
+
+.checkbox-label {
+  font-size: 12px;
 }
 
 /* ALL RECIPES */
@@ -212,7 +238,7 @@ margin: 2% 5% 0% 0%;
   
   .search-bar {
     margin-bottom: 1%;
-    width: 18vh;
+    width: 12vh;
   }
   
   .submit-search-button {
@@ -309,6 +335,12 @@ margin: 2% 5% 0% 0%;
   
   /* Saved Section */
 
+  .saved-title {
+    font-size: 14px;
+    margin-bottom: 2%;
+    margin-top: 4%;
+  }
+
   .saved-section {
   justify-self: flex-end;
   margin: 2% 5% 0% 0%;
@@ -321,6 +353,25 @@ margin: 2% 5% 0% 0%;
   .submit-search-favorites-button {
     height: 3vh;
     width: 8vh;
+  }
+
+  .added-recipe {
+    font-size: 12px;
+    margin-left: 5%;
+  }
+
+  .added-recipe:hover {
+    color:#4D77FF;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .checkbox {
+    margin-left: 5%;
+  }
+  
+  .checkbox-label {
+    font-size: 12px;
   }
   
   /* ALL RECIPES */
@@ -367,22 +418,7 @@ margin: 2% 5% 0% 0%;
     display: none;
   }
 
-  /* SAVED SECTION */
-
-  .saved-title {
-    font-size: 14px;
-    margin-bottom: 2%;
-    margin-top: 4%;
-  }
-
-  .submit-search-favorites-button {
-    height: 3vh;
-    width: 9vh;
-  }
-
   /* PANTRY VIEW */
-
-
 
 }
 
@@ -509,14 +545,16 @@ margin: 2% 5% 0% 0%;
   }
   
   /* Saved Section */
-
+  
   .saved-section {
   justify-self: flex-end;
   margin: 10% 0% 0% 1%;
   }
 
   .saved-title {
+    font-size: 14px;
     margin-bottom: 2%;
+    margin-top: 4%;
   }
   
   .saved-search-bar {
@@ -526,6 +564,25 @@ margin: 2% 5% 0% 0%;
   .submit-search-favorites-button {
     height: 2vh;
     width: 9vh;
+  }
+
+  .added-recipe {
+    font-size: 12px;
+    margin-left: 5%;
+  }
+
+  .added-recipe:hover {
+    color:#4D77FF;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .checkbox {
+    margin-left: 5%;
+  }
+  
+  .checkbox-label {
+    font-size: 12px;
   }
   
   /* ALL RECIPES */
