@@ -64,7 +64,8 @@ compareIngredientAmounts(lemons) {
       }
     })
     console.log("ingredientFound", ingredientFound)
-    if (ingredientFound !== undefined){
+    if (ingredientFound.length !== 0){
+
       ingredientsMissing.push(ingredientFound)
     }
   })
