@@ -695,9 +695,15 @@ describe('User', () => {
     expect(user1.filterFavsByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal([recipe2]);
   });
 
-  it.only('Should be able to delete used ingredients', () => {
+  it('Should be able to delete used ingredients', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
     expect(user1.subtractFromPantry(recipe1)).to.equal(8.5)
+  });
+
+  it.only('Should be able to compare favorites and pantry ingredeints', () => {
+    user1.addToFavorites(recipe1)
+    user1.addToFavorites(recipe2)
+    expect(user1.compareIngredientAmounts(recipe1)).to.equal(8.5)
   });
 })
