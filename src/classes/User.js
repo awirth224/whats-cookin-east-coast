@@ -45,23 +45,38 @@ class User {
 // if not all ingredients from recipe are found in pantry then return an array of the ingredients not found
 // ^^ make a new array of different length -> reduce -> acc [] -> adds a missing ingredient each iteration
 
-compareIngredientAmounts(lemons) {
-  let matchIngredients = lemons.recipeIngredients.filter(item => {
-    // let givenRecipeIngId = item.id
-    let ingredientFound = this.pantry.find((ingredient, givenRecipeIngId) => {
-      ingredient.id === givenRecipeIngId.id
-    })
-    console.log('INGREDIENTFOUND', ingredientFound)
+
+  // console.log('INGREDIENTFOUND', ingredientFound)
     // return ingredientFound - returns undefined
     // console.log('PANTRY', this.pantry)
     // console.log('ITEM', item)
     // console.log('GIVENRECIPE', givenRecipeIngId)
     // console.log('MATCHEDING', matchIngredients)
     // return ingredientFound 
+compareIngredientAmounts(lemons) {
+  let ingredientsMissing = []
+  lemons.recipeIngredients.forEach(item => {
+    let ingredientFound = this.pantry.filter((ingredient) => {
+      // console.log("item inside of filter",item)
+      // console.log("ingredient inside of filter", ingredient)
+      if (ingredient.ingredient === item.id) {
+        return true
+      }
+    })
+    console.log("ingredientFound", ingredientFound)
+    if (ingredientFound !== undefined){
+      ingredientsMissing.push(ingredientFound)
+    }
   })
-  // console.log('MATCHINGREDIENTS', matchIngredients) returns an empty array
-  return matchIngredients
-// console.log('THIS.FAVORITES', lemons.recipeIngredients)
+  console.log("ingredients missing array after forEach",ingredientsMissing)
+  return ingredientsMissing
+
+  // let ingredientsNeededInfo = [];
+  //       this.recipeIngredients.forEach((ingredient) => {
+  //           var info = this.ingredientsMasterList.find( ing => ingredient.id === ing.id)
+  //           ingredientsNeededInfo.push({...info,...ingredient})
+  //       })
+  //       return ingredientsNeededInfo
 }
 
 
