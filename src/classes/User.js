@@ -27,7 +27,66 @@ class User {
   filterFavsByName(name) {
      let favByNameResult = this.favorites.filter(favorites => favorites.name.includes(name))
     return favByNameResult
+    
   }
+
+//we want to access a recipe.ingredients and the user.pantry.ingredients
+//compared the amount of ingredients in the recipe vs pantry
+//if ingredient or equal to or greater than recipe ingredients then work
+// if not return the array of ingredients needed and the amount
+// compare this.favorites to this.pantry
+// this.favorites.recipeIngredients.id vs this.pantry.ingredient && this.favorites.quantity.amount vs this.pantry.amount
+
+
+compareIngredientAmounts(lemons){
+  // console.log('PANTRY', this.pantry)
+  // console.log('LEMONS', )
+  console.log('PANTRY', this.pantry)
+  let matchIngredients = lemons.recipeIngredients.filter(item => {
+    console.log('ITEM', item)
+    let givenRecipeIngId = item.id
+    console.log('GIVENRECIPE', givenRecipeIngId)
+    let ingredientFound = this.pantry.find((ingredient, givenRecipeIngId) => {
+      ingredient.id === givenRecipeIngId
+    })
+    // console.log('INGREDIENTFOUND', ingredientFound)
+    // console.log('MATCHEDING', matchIngredients)
+    // return ingredientFound 
+  })
+// console.log('THIS.FAVOIRTES', lemons.recipeIngredients)
+// console.log('THIS.PANTRY', this.pantry)
 }
+
+
+subtractFromPantry(recipe){
+  const formattedRecipe = recipe.recipeIngredients.reduce((formattedList, item) => {
+    formattedList[item.id] = item.quantity.amount
+    return formattedList
+  },{})
+  this.pantry = (this.pantry.map(item => {
+    if(formattedRecipe[item.ingredient]){
+      return {ingredient: item.ingredient, amount: item.amount - formattedRecipe[item.ingredient]}
+    } else { 
+      return item
+    }
+  }))
+}
+
+}
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
 
 export default User
