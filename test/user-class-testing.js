@@ -696,7 +696,6 @@ describe('User', () => {
     expect(user1.filterFavsByName('MaPlE')).to.deep.equal([recipe2])
     expect(user1.filterFavsByName('not a real search')).to.deep.equal([]);
   });
-<<<<<<< HEAD
 
   it('Should be able to delete used ingredients', () => {
     user1.addToFavorites(recipe1)
@@ -707,8 +706,6 @@ describe('User', () => {
   it.only('Should be able to compare favorites and pantry ingredeints', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
-    expect(user1.compareIngredientAmounts(recipe1)).to.equal(8.5)
+    expect(user1.compareIngredientAmounts(recipe1)).to.deep.equal([])
   });
-=======
->>>>>>> bbfc4b8a555df6d7fbc90b3d21fa746121c2b7b6
 })

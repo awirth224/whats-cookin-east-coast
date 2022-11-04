@@ -34,20 +34,19 @@ class User {
     return favByNameResult
     
   }
-<<<<<<< HEAD
 
-//we want to access a recipe.ingredients and the user.pantry.ingredients
-//compared the amount of ingredients in the recipe vs pantry
-//if ingredient or equal to or greater than recipe ingredients then work
-// if not return the array of ingredients needed and the amount
+// we want to access a recipe.ingredients and the user.pantry.ingredients
+// compare the amount of ingredients in the recipe vs pantry
+// if ingredient or equal to or greater than recipe ingredients then subtract ing used
+// if not return an array of ingredients needed and the amount
 // compare this.favorites to this.pantry
 // this.favorites.recipeIngredients.id vs this.pantry.ingredient && this.favorites.quantity.amount vs this.pantry.amount
+// if all ingredients from recipe are found in pantry then move on to next function that subtracts amounts
+// if not all ingredients from recipe are found in pantry then return an array of the ingredients not found
+// ^^ make a new array of different length -> reduce -> acc [] -> adds a missing ingredient each iteration
 
-
-compareIngredientAmounts(lemons){
+compareIngredientAmounts(lemons) {
   // console.log('PANTRY', this.pantry)
-  // console.log('LEMONS', )
-  console.log('PANTRY', this.pantry)
   let matchIngredients = lemons.recipeIngredients.filter(item => {
     console.log('ITEM', item)
     let givenRecipeIngId = item.id
@@ -62,18 +61,15 @@ compareIngredientAmounts(lemons){
 // console.log('THIS.FAVOIRTES', lemons.recipeIngredients)
 // console.log('THIS.PANTRY', this.pantry)
 }
-=======
-} 
->>>>>>> bbfc4b8a555df6d7fbc90b3d21fa746121c2b7b6
 
 
-subtractFromPantry(recipe){
+subtractFromPantry(recipe) {
   const formattedRecipe = recipe.recipeIngredients.reduce((formattedList, item) => {
     formattedList[item.id] = item.quantity.amount
     return formattedList
   },{})
   this.pantry = (this.pantry.map(item => {
-    if(formattedRecipe[item.ingredient]){
+    if (formattedRecipe[item.ingredient]) {
       return {ingredient: item.ingredient, amount: item.amount - formattedRecipe[item.ingredient]}
     } else { 
       return item
@@ -82,16 +78,6 @@ subtractFromPantry(recipe){
 }
 
 }
-
-
-
-
-
-
-
-
- 
-
 
 
 
