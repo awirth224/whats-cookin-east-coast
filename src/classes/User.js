@@ -35,50 +35,20 @@ class User {
     
   }
 
-// we want to access a recipe.ingredients and the user.pantry.ingredients
-// compare the amount of ingredients in the recipe vs pantry
-// if ingredient is >= recipe ingredients then subtract ingredient amt used
-// if not return an array of ingredients needed and the amount
-// compare this.favorites to this.pantry
-// this.favorites.recipeIngredients.id vs this.pantry.ingredient && this.favorites.quantity.amount vs this.pantry.amount
-// if all ingredients from recipe are found in pantry then move on to next function that subtracts amounts
-// if not all ingredients from recipe are found in pantry then return an array of the ingredients not found
-// ^^ make a new array of different length -> reduce -> acc [] -> adds a missing ingredient each iteration
-
-
-  // console.log('INGREDIENTFOUND', ingredientFound)
-    // return ingredientFound - returns undefined
-    // console.log('PANTRY', this.pantry)
-    // console.log('ITEM', item)
-    // console.log('GIVENRECIPE', givenRecipeIngId)
-    // console.log('MATCHEDING', matchIngredients)
-    // return ingredientFound 
-compareIngredientAmounts(lemons) {
-  let ingredientsMissing = []
-  lemons.recipeIngredients.forEach(item => {
-    let ingredientFound = this.pantry.filter((ingredient) => {
-      // console.log("item inside of filter",item)
-      // console.log("ingredient inside of filter", ingredient)
-      if (ingredient.ingredient === item.id) {
-        return true
+  checkPantry(recipe) {
+    let match = 0;
+    recipe.recipeIngredients.forEach(recipeIngredient => {
+      this.pantry.forEach(pantryIngredient => {
+        console.log("recipeIngredient", recipeIngredient)
+        console.log("pantryIngredient", pantryIngredient)
+        if (recipeIngredient.id === pantryIngredient.ingredient && pantryIngredient.amount >= recipeIngredient.quantity.amount) {
+          match += 1;
       }
     })
-    console.log("ingredientFound", ingredientFound)
-    if (ingredientFound.length !== 0){
-
-      ingredientsMissing.push(ingredientFound)
-    }
   })
-  console.log("ingredients missing array after forEach",ingredientsMissing)
-  return ingredientsMissing
-
-  // let ingredientsNeededInfo = [];
-  //       this.recipeIngredients.forEach((ingredient) => {
-  //           var info = this.ingredientsMasterList.find( ing => ingredient.id === ing.id)
-  //           ingredientsNeededInfo.push({...info,...ingredient})
-  //       })
-  //       return ingredientsNeededInfo
-}
+  console.log(this.pantry)
+    return match === recipe.recipeIngredients.length;
+  }
 
 
 subtractFromPantry(recipe) {

@@ -9,6 +9,7 @@ describe('User', () => {
   let user2
   let recipe1
   let recipe2
+  let recipe3
   beforeEach(() => {
     user1 = new User({
       "name": "Saige O'Kon",
@@ -627,6 +628,96 @@ describe('User', () => {
         "dinner"
       ]
     })
+    recipe3 = new Recipe(ingredientsData, 
+      {
+        "id": 741603,
+        "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
+        "ingredients": [
+          {
+            "id": 18371,
+            "quantity": {
+              "amount": 2,
+              "unit": "teaspoons"
+            }
+          },
+          {
+            "id": 20081,
+            "quantity": {
+              "amount": 1,
+              "unit": "cup"
+            }
+          },
+          {
+            "id": 1001,
+            "quantity": {
+              "amount": 2,
+              "unit": "tablespoons"
+            }
+          },
+          {
+            "id": 1230,
+            "quantity": {
+              "amount": 2,
+              "unit": "cups"
+            }
+          },
+          {
+            "id": 1123,
+            "quantity": {
+              "amount": 2,
+              "unit": ""
+            }
+          },
+          {
+            "id": 2047,
+            "quantity": {
+              "amount": 1,
+              "unit": "teaspoon"
+            }
+          },
+          {
+            "id": 19335,
+            "quantity": {
+              "amount": 2,
+              "unit": "teaspoons"
+            }
+          }
+        ],
+        "instructions": [
+          {
+            "instruction": "Watch how to make this recipe.",
+            "number": 1
+          },
+          {
+            "instruction": "In a large bowl, whisk together buttermilk, eggs, baking powder, sugar, salt and butter.",
+            "number": 2
+          },
+          {
+            "instruction": "In another large bowl mix together all-purpose flour and buckwheat flour.",
+            "number": 3
+          },
+          {
+            "instruction": "Slowly add flour into the wet ingredients mixing with a whisk.",
+            "number": 4
+          },
+          {
+            "instruction": "Mix until there are no lumps and the batter is smooth and velvety.",
+            "number": 5
+          },
+          {
+            "instruction": "In a large cast iron skillet or flat grill pan over medium-high heat, melt a tablespoon of butter. Ladle pancake batter onto skillet to desired size. Using the ladle, form pancake into circular shape. Cook on each side for 2 to 3 minutes or until golden brown. Set pancakes aside and keep warm. Repeat with remaining ingredients.",
+            "number": 6
+          },
+          {
+            "instruction": "Once completed, spread peanut butter on a pancake, layer it with sliced bananas and drizzle it with honey. Top the pancake with another pancake to form a sandwich. Repeat with remaining pancakes and serve with extra honey.",
+            "number": 7
+          }
+        ],
+        "name": "Elvis Pancakes",
+        "tags": [
+          "side dish"
+        ]
+      })
   })
 
   it('Should be a function', () => {
@@ -697,15 +788,19 @@ describe('User', () => {
     expect(user1.filterFavsByName('not a real search')).to.deep.equal([]);
   });
 
-  it('Should be able to delete used ingredients', () => {
+  it.only('Should be able to compare favorites and pantry ingredeints to check if theres enough ingredients', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
-    expect(user1.subtractFromPantry(recipe1)).to.equal(8.5)
+    user1.addToFavorites(recipe3)
+    expect(user1.checkPantry(recipe1)).to.equal(false)
+    expect(user1.checkPantry(recipe2)).to.equal(false)
+    expect(user1.checkPantry(recipe3)).to.equal(true)
   });
 
-  it.only('Should be able to compare favorites and pantry ingredeints', () => {
+  it.only('Should be able to delete used ingredients', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
-    expect(user1.compareIngredientAmounts(recipe1)).to.deep.equal([])
+    expect(user1.subtractFromPantry(recipe1)).to.deep.equal(user1.pantry)
   });
+
 })
