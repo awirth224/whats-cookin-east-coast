@@ -37,7 +37,7 @@ class User {
 
 // we want to access a recipe.ingredients and the user.pantry.ingredients
 // compare the amount of ingredients in the recipe vs pantry
-// if ingredient or equal to or greater than recipe ingredients then subtract ing used
+// if ingredient is >= recipe ingredients then subtract ingredient amt used
 // if not return an array of ingredients needed and the amount
 // compare this.favorites to this.pantry
 // this.favorites.recipeIngredients.id vs this.pantry.ingredient && this.favorites.quantity.amount vs this.pantry.amount
@@ -46,20 +46,22 @@ class User {
 // ^^ make a new array of different length -> reduce -> acc [] -> adds a missing ingredient each iteration
 
 compareIngredientAmounts(lemons) {
-  // console.log('PANTRY', this.pantry)
   let matchIngredients = lemons.recipeIngredients.filter(item => {
-    console.log('ITEM', item)
-    let givenRecipeIngId = item.id
-    console.log('GIVENRECIPE', givenRecipeIngId)
+    // let givenRecipeIngId = item.id
     let ingredientFound = this.pantry.find((ingredient, givenRecipeIngId) => {
-      ingredient.id === givenRecipeIngId
+      ingredient.id === givenRecipeIngId.id
     })
-    // console.log('INGREDIENTFOUND', ingredientFound)
+    console.log('INGREDIENTFOUND', ingredientFound)
+    // return ingredientFound - returns undefined
+    // console.log('PANTRY', this.pantry)
+    // console.log('ITEM', item)
+    // console.log('GIVENRECIPE', givenRecipeIngId)
     // console.log('MATCHEDING', matchIngredients)
     // return ingredientFound 
   })
-// console.log('THIS.FAVOIRTES', lemons.recipeIngredients)
-// console.log('THIS.PANTRY', this.pantry)
+  // console.log('MATCHINGREDIENTS', matchIngredients) returns an empty array
+  return matchIngredients
+// console.log('THIS.FAVORITES', lemons.recipeIngredients)
 }
 
 
