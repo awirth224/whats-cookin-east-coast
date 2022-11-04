@@ -114,16 +114,16 @@ function generateRandomRecipes() {
 
 function showMainRecipe() {
     currentRecipeName.innerHTML = `${currentRecipe.name}`
-    currentRecipeImage.innerHTML = `<img class="current-recipe-image" id="${currentRecipe.id}" img
+    currentRecipeImage.innerHTML = `<img class="current-recipe-image" id="${currentRecipe.id}" alt="image of ${currentRecipe.name}" img
     src=${currentRecipe.image}>`
 }
 
 function showMainRandomRecipes() {
-    leftRandomImageCard.innerHTML = `<img class="left-random-image" id="${randomRecipes[0].id}" img src=${randomRecipes[0].image}>
+    leftRandomImageCard.innerHTML = `<img class="left-random-image" id="${randomRecipes[0].id}" img src=${randomRecipes[0].image} alt="image of ${randomRecipes[0].name}" >
     <h1 class="left random-name">${randomRecipes[0].name}</h1>`
-    middleRandomImageCard.innerHTML = `<img class="middle-random-image" id="${randomRecipes[1].id}" img src=${randomRecipes[1].image}>
+    middleRandomImageCard.innerHTML = `<img class="middle-random-image" id="${randomRecipes[1].id}" img src=${randomRecipes[1].image} alt="image of ${randomRecipes[1].name}">
     <h1 class="middle random-name">${randomRecipes[1].name}</h1>`
-    rightRandomImageCard.innerHTML = `<img class="right-random-image" id="${randomRecipes[2].id}" img src=${randomRecipes[2].image}>
+    rightRandomImageCard.innerHTML = `<img class="right-random-image" id="${randomRecipes[2].id}" img src=${randomRecipes[2].image} alt="image of ${randomRecipes[2].name}">
     <h1 class="right random-name">${randomRecipes[2].name}</h1>`
 }
 
@@ -142,7 +142,7 @@ function viewSelectedRecipe() {
 function showSelectedRecipe() {
     selectedRecipeInfo.innerHTML = `
     <section class="selected-recipe-container">
-    <img class="selected-recipe-image" img src=${selectedRecipe.image}>
+    <img class="selected-recipe-image" img src=${selectedRecipe.image} alt="image of ${selectedRecipe.name}">
     <h1 class="selected name">${selectedRecipe.name}</h1>
     <h2 class="selected cost">Cost: ${selectedRecipe.getIngredientsCost()} cent</h2>
     <h3 class="selected ingredients-list"> Ingredients </h3>
