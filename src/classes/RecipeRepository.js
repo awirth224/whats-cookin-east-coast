@@ -17,12 +17,17 @@ class RecipeRepository {
   }
   
   filterByTag(tag) {
-    let tagFilterResults = this.recipesList.filter(recipe => recipe.tags.includes(tag))
+    let tagFilterResults = this.recipesList.filter((recipe) => {
+      let upperCaseTags = recipe.tags.map(word => word.toUpperCase())
+      if (upperCaseTags.includes(tag.toUpperCase())) {
+        return true
+      }
+    })
     return tagFilterResults
   }
 
   filterByName(name) {
-    let nameFilterResults = this.recipesList.filter(recipe => recipe.name.includes(name))
+    let nameFilterResults = this.recipesList.filter(recipe => recipe.name.toUpperCase().includes(name.toUpperCase()))
     return nameFilterResults
   }
 }

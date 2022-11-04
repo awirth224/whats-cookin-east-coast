@@ -682,7 +682,8 @@ describe('User', () => {
   it('Should return all the recipes in favorites array that match the filter tag', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
-    expect(user1.filterFavsByTag('snack')).to.deep.equal([recipe1]);
+    expect(user1.filterFavsByTag('SnAcK')).to.deep.equal([recipe1])
+    expect(user1.filterFavsByTag('not a real search')).to.deep.equal([])
   });
 
   it('Should have a method that filters by name', () => {
@@ -692,8 +693,10 @@ describe('User', () => {
   it('Should return all the recipes in favorites array that match the filter name', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
-    expect(user1.filterFavsByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal([recipe2]);
+    expect(user1.filterFavsByName('MaPlE')).to.deep.equal([recipe2])
+    expect(user1.filterFavsByName('not a real search')).to.deep.equal([]);
   });
+<<<<<<< HEAD
 
   it('Should be able to delete used ingredients', () => {
     user1.addToFavorites(recipe1)
@@ -706,4 +709,6 @@ describe('User', () => {
     user1.addToFavorites(recipe2)
     expect(user1.compareIngredientAmounts(recipe1)).to.equal(8.5)
   });
+=======
+>>>>>>> bbfc4b8a555df6d7fbc90b3d21fa746121c2b7b6
 })

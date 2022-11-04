@@ -3,11 +3,10 @@ import './styles.css';
 import apiCalls from './apiCalls'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-
 import Recipe from '../src/classes/Recipe';
 import RecipeRepository from '../src/classes/RecipeRepository';
-import recipeData from '../src/data/recipes';
 import fetchData from '../src/apiCalls';
+import User from '../src/classes/User'
 
 //QuerySelector
 const currentRecipeName = document.querySelector(".current-recipe-name")
@@ -73,7 +72,7 @@ function showElement (showThis) {
     showThis.classList.remove("hidden")
 }
 
-function loadHandler(){
+function loadHandler() {
     onLoadRecipe()
     generateRandomRecipes()
     generateAllRecipes()
@@ -83,29 +82,25 @@ function loadHandler(){
 
 function generateCurrentUser() {
     currentUser = new User (usersList[getRandomIndex(usersList)]) 
-    console.log("currentUser",currentUser)
 }
-
 
 function generateUsersList () {
     usersData.forEach((user) => {
       let userClass = new User (user)
       usersList.push(userClass)
     })
-    console.log("usersList full of user class instances",usersList)
 }
-
 
 function generateAllRecipes () {
     allRecipes = new RecipeRepository(ingredientsData,recipeData)
 }
 
-function onLoadRecipe(){
+function onLoadRecipe() {
     currentRecipe = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     showMainRecipe()
 }
 
-function generateRandomRecipes(){
+function generateRandomRecipes() {
     randomRecipes = []
     let randomRecipe1 = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     randomRecipes.push(randomRecipe1)
@@ -117,22 +112,22 @@ function generateRandomRecipes(){
     showMainRandomRecipes()
 }
 
-function showMainRecipe(){
+function showMainRecipe() {
     currentRecipeName.innerHTML = `${currentRecipe.name}`
-    currentRecipeImage.innerHTML = `<img class="current-recipe-image" id="${currentRecipe.id}" img
+    currentRecipeImage.innerHTML = `<img class="current-recipe-image" id="${currentRecipe.id}" alt="image of ${currentRecipe.name}" img
     src=${currentRecipe.image}>`
 }
 
-function showMainRandomRecipes(){
-    leftRandomImageCard.innerHTML = `<img class="left-random-image" id="${randomRecipes[0].id}" img src=${randomRecipes[0].image}>
-    <h1 class="left-random-name">${randomRecipes[0].name}</h1>`
-    middleRandomImageCard.innerHTML = `<img class="middle-random-image" id="${randomRecipes[1].id}" img src=${randomRecipes[1].image}>
-    <h1 class="middle-random-name">${randomRecipes[1].name}</h1>`
-    rightRandomImageCard.innerHTML = `<img class="right-random-image" id="${randomRecipes[2].id}" img src=${randomRecipes[2].image}>
-    <h1 class="right-random-name">${randomRecipes[2].name}</h1>`
+function showMainRandomRecipes() {
+    leftRandomImageCard.innerHTML = `<img class="left-random-image" id="${randomRecipes[0].id}" img src=${randomRecipes[0].image} alt="image of ${randomRecipes[0].name}" >
+    <h1 class="left random-name">${randomRecipes[0].name}</h1>`
+    middleRandomImageCard.innerHTML = `<img class="middle-random-image" id="${randomRecipes[1].id}" img src=${randomRecipes[1].image} alt="image of ${randomRecipes[1].name}">
+    <h1 class="middle random-name">${randomRecipes[1].name}</h1>`
+    rightRandomImageCard.innerHTML = `<img class="right-random-image" id="${randomRecipes[2].id}" img src=${randomRecipes[2].image} alt="image of ${randomRecipes[2].name}">
+    <h1 class="right random-name">${randomRecipes[2].name}</h1>`
 }
 
-function viewSelectedRecipe () {
+function viewSelectedRecipe() {
     hideElement(homeView)
     hideElement(searchedRecipeView)
     hideElement(allRecipesView)
@@ -147,11 +142,11 @@ function viewSelectedRecipe () {
 function showSelectedRecipe() {
     selectedRecipeInfo.innerHTML = `
     <section class="selected-recipe-container">
-    <img class="selected-recipe-image" img src=${selectedRecipe.image}>
-    <h1 class="name">${selectedRecipe.name}</h1>
-    <h2 class="cost">Cost: ${selectedRecipe.getIngredientsCost()} cent</h2>
-    <h3 class="ingredients-list"> Ingredients </h3>
-    <h4 class="instructions-list"> Instructions </h4>
+    <img class="selected-recipe-image" img src=${selectedRecipe.image} alt="image of ${selectedRecipe.name}">
+    <h1 class="selected name">${selectedRecipe.name}</h1>
+    <h2 class="selected cost">Cost: ${selectedRecipe.getIngredientsCost()} cent</h2>
+    <h3 class="selected ingredients-list"> Ingredients </h3>
+    <h4 class="selected instructions-list"> Instructions </h4>
     </section>`
     showInstructions()
     showIngredients()
@@ -184,12 +179,12 @@ function viewSearchedRecipes() {
     tagResults = allRecipes.filterByTag(searchTerm)
     nameResults = allRecipes.filterByName(searchTerm)
     if (nameResults.length === 0 && tagResults.length === 0) {
-        tagSearchResults.innerHTML = `<h1>There are no results for your search, please try a different search</h1>`
+        tagSearchResults.innerHTML = `<h1>There are no results matching what you entered, please try a different search</h1>`
     }
     nameResults.forEach(element => 
-        nameSearchResults.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+        nameSearchResults.innerHTML+= `<h1 class="searched-recipe" id=${element.id}>${element.name}</h1>`)
     tagResults.forEach(element => 
-        tagSearchResults.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+        tagSearchResults.innerHTML+= `<h1 class="searched-recipe" id=${element.id}>${element.name}</h1>`)
     hideElement(selectedRecipeView)
     hideElement(homeView)
     showElement(searchedRecipeView)
@@ -225,15 +220,19 @@ function addRecipeToFavorites() {
     savedRecipes.innerHTML = ""
 
     currentUser.favorites.forEach( element =>
-        savedRecipes.innerHTML += `<h1 id=${element.id}>${element.name}  </h1>`
+        savedRecipes.innerHTML += `
+        <h1 id=${element.id}>${element.name}</h1>
+        <input type="checkbox" id="cookedRecipe" name="recipe" value="cooked">
+        <label for="cooked" class="checkbox-labe">Cooked</>
+        `
     )
 
 }
 
-function viewAllRecipes () {
+function viewAllRecipes() {
     showElement(allRecipesView)
     allRecipes.recipesList.forEach(element => 
-        allRecipesView.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`
+        allRecipesView.innerHTML+= `<h1 class="all-recipe-list" id=${element.id}>${element.name}</h1>`
     )
     hideElement(viewAllRecipesButton)
     hideElement(homeView)
@@ -242,23 +241,13 @@ function viewAllRecipes () {
     hideElement(viewSavedFavorites)
 }
 
-function viewHome () {
+function viewHome() {
     showElement(homeView)
     showElement(viewAllRecipesButton)
     hideElement(homeButton)
     hideElement(allRecipesView)
     hideElement(selectedRecipeView)
     showElement(viewSavedFavorites)
-}
-
-function getApiData() {
-    fetchData()
-    .then(data => {
-        console.log('data', data)
-        apiReturnData = data
-        console.log('apiReturn', apiReturnData)
-    })
-  
 }
 
 //EventListener
@@ -268,57 +257,56 @@ homeButton.addEventListener("click", function(event) {
     viewHome()
 })
 
-viewAllRecipesButton.addEventListener("click", function (event){
+viewAllRecipesButton.addEventListener("click", function(event) {
     event.preventDefault()
     viewAllRecipes()
 })
 
-allRecipesView.addEventListener("click", function (event) {
+allRecipesView.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-searchedRecipeView.addEventListener("click", function (event) {
+searchedRecipeView.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-currentRecipeImage.addEventListener("click", function (event) {
+currentRecipeImage.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-leftRandomImageCard.addEventListener("click", function (event) {
+leftRandomImageCard.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-middleRandomImageCard.addEventListener("click", function (event) {
+middleRandomImageCard.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-rightRandomImageCard.addEventListener("click", function (event) {
+rightRandomImageCard.addEventListener("click", function(event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
-searchButton.addEventListener("click", function(event){
+searchButton.addEventListener("click", function(event) {
     event.preventDefault()
     viewSearchedRecipes()
 })
 
-addFavoriteButton.addEventListener("click", function (event) {
+addFavoriteButton.addEventListener("click", function(event) {
     event.preventDefault()
 
-    if (currentUser.favorites.includes(selectedRecipe))
-    {
+    if (currentUser.favorites.includes(selectedRecipe)) {
         let indexOfRecipe = currentUser.favorites.indexOf(selectedRecipe)
         currentUser.favorites.splice(indexOfRecipe, 1)
     } else {
@@ -327,7 +315,7 @@ addFavoriteButton.addEventListener("click", function (event) {
     addRecipeToFavorites()
 })
 
-searchFavoritesButton.addEventListener("click", function (event) {
+searchFavoritesButton.addEventListener("click", function(event) {
     event.preventDefault()
     updateFavoritesBySearch()
 })
