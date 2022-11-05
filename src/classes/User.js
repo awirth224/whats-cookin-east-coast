@@ -39,14 +39,11 @@ class User {
     let match = 0;
     recipe.recipeIngredients.forEach(recipeIngredient => {
       this.pantry.forEach(pantryIngredient => {
-        console.log("recipeIngredient", recipeIngredient)
-        console.log("pantryIngredient", pantryIngredient)
         if (recipeIngredient.id === pantryIngredient.ingredient && pantryIngredient.amount >= recipeIngredient.quantity.amount) {
           match += 1;
       }
     })
   })
-  console.log(this.pantry)
     return match === recipe.recipeIngredients.length;
   }
 
