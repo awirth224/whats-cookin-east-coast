@@ -74,6 +74,40 @@ addIngredient(userIng) {
   return   this.pantry
 };
 
+returnNeededIngredients(recipe) {
+  const result = recipe.recipeIngredients.reduce((obj, recipeIngredient) => {
+    let match = this.pantry.find(pantryIngredient => recipeIngredient.id === pantryIngredient.ingredient)
+
+    if (match) {
+      obj.have.push(recipeIngredient)
+    } else {
+      obj.need.push(recipeIngredient)
+    }
+    return obj
+  },
+  {
+    have: [],
+    need: []
+  })
+  
+  const needByAmount = result.have.filter(resultIngredient => {
+    let foundMatches = this.pantry.find(ingredient => ingredient.ingredient === resultIngredient.id)
+    let needByAmountReturn =  foundMatches.amount < resultIngredient.quantity.amount
+    return needByAmountReturn
+  })
+  needByAmount.map(recipeIngredient => {
+    const foundMatches = this.pantry.find(pantryIngredient => pantryIngredient.ingredient === recipeIngredient.id)
+    return {
+      id: recipeIngredient.id,
+      amount: recipeIngredient.quantity.amount - foundMatches.amount
+    }
+  })
+
+  const totalNeed = result.need.concat(needByAmount)
+  return totalNeed
+}
+
+
 }
 
 

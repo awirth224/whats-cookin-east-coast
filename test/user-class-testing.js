@@ -841,7 +841,7 @@ describe('User', () => {
     ])
   });
 
-  it.only('Should have a method that filters by name', () => {
+  it('Should have a method that filters by name', () => {
     expect(user1.addIngredient([{
       "id": 11304,
       "amount": 5,
@@ -883,6 +883,17 @@ describe('User', () => {
       { ingredient: 2027, amount: 2 },
       { ingredient: 11304, amount: 5 }
     ]);
+  });
+
+  it('Should be able to compare favorites and pantry ingredeints to check if theres enough ingredients', () => {
+    user1.addToFavorites(recipe1)
+    user1.addToFavorites(recipe2)
+    expect(user1.returnNeededIngredients(recipe1)).to.deep.equal([
+      { id: 19334, quantity: { amount: 0.5, unit: 'c' } },
+      { id: 1012047, quantity: { amount: 24, unit: 'servings' } },
+      { id: 10019903, quantity: { amount: 2, unit: 'c' } },
+      { id: 19206, quantity: { amount: 3, unit: 'Tbsp' } }
+    ])
   });
 
 })
