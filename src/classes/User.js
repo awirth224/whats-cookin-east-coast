@@ -62,6 +62,18 @@ subtractFromPantry(recipe) {
   }))
 }
 
+addIngredient(userIng) {
+  userIng.forEach(ingredient => {
+    const match = this.pantry.find(pantryIngredient => pantryIngredient.ingredient === ingredient.id)
+      if (match) {
+        match.amount += ingredient.amount;
+      } else {
+          this.pantry.push({ingredient: ingredient.id, amount: ingredient.amount});
+      }
+  })
+  return   this.pantry
+};
+
 }
 
 
