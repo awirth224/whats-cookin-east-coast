@@ -732,7 +732,7 @@ describe('User', () => {
     expect(user1.name).to.equal("Saige O'Kon");
   });
 
-  it('Should have anv id', () => {
+  it('Should have an id', () => {
     expect(user1.id).to.equal(1);
   });
 
@@ -759,7 +759,7 @@ describe('User', () => {
     expect(user1.removeFromFavorites).to.be.a('function');
   });
 
-  it('Should return favorites array without removed recipe', () => {
+  it('Should return favorites array with the chosen recipe removed', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
     user1.removeFromFavorites(recipe1)
@@ -788,7 +788,7 @@ describe('User', () => {
     expect(user1.filterFavsByName('not a real search')).to.deep.equal([]);
   });
 
-  it('Should be able to compare favorites and pantry ingredeints to check if theres enough ingredients', () => {
+  it('Should be able to compare favorites and pantry ingredients to check if there\'s enough ingredients', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
     user1.addToFavorites(recipe3)
@@ -797,7 +797,7 @@ describe('User', () => {
     expect(user1.checkPantry(recipe3)).to.equal(true)
   });
 
-  it('Should be able to delete used ingredients', () => {
+  it('Should be able to remove used ingredients when a chosen recipe is cooked', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
     user1.addToFavorites(recipe3)
@@ -841,7 +841,7 @@ describe('User', () => {
     ])
   });
 
-  it('Should have a method that filters by name', () => {
+  it('Should have a method that adds user given ingredient and amount to the pantry', () => {
     expect(user1.addIngredient([{
       "id": 11304,
       "amount": 5,
@@ -885,7 +885,7 @@ describe('User', () => {
     ]);
   });
 
-  it('Should be able to compare favorites and pantry ingredeints to check if theres enough ingredients', () => {
+  it('Should be able to return a list of the ingredients and amounts needed to be able to cook a recipe', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
     expect(user1.returnNeededIngredients(recipe1)).to.deep.equal([
