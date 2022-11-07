@@ -2,12 +2,14 @@ import { expect } from 'chai';
 import User from '../src/classes/User';
 import Recipe from '../src/classes/Recipe';
 import usersData from '../src/data/users';
+import ingredientsData from '../src/data/ingredients';
 
 describe('User', () => {
   let user1 
   let user2
   let recipe1
   let recipe2
+  let recipe3
   beforeEach(() => {
     user1 = new User({
       "name": "Saige O'Kon",
@@ -405,7 +407,7 @@ describe('User', () => {
         }
       ]
     })
-    recipe1 = {
+    recipe1 = new Recipe(ingredientsData,  {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
       "ingredients": [
@@ -522,8 +524,8 @@ describe('User', () => {
         "antipasto",
         "hor d'oeuvre"
       ]
-    }
-    recipe2 = {
+    })
+    recipe2 = new Recipe(ingredientsData, {
       "id": 678353,
       "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
       "ingredients": [
@@ -625,7 +627,97 @@ describe('User', () => {
         "main dish",
         "dinner"
       ]
-    }
+    })
+    recipe3 = new Recipe(ingredientsData, 
+      {
+        "id": 741603,
+        "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
+        "ingredients": [
+          {
+            "id": 18371,
+            "quantity": {
+              "amount": 2,
+              "unit": "teaspoons"
+            }
+          },
+          {
+            "id": 20081,
+            "quantity": {
+              "amount": 1,
+              "unit": "cup"
+            }
+          },
+          {
+            "id": 1001,
+            "quantity": {
+              "amount": 2,
+              "unit": "tablespoons"
+            }
+          },
+          {
+            "id": 1230,
+            "quantity": {
+              "amount": 2,
+              "unit": "cups"
+            }
+          },
+          {
+            "id": 1123,
+            "quantity": {
+              "amount": 2,
+              "unit": ""
+            }
+          },
+          {
+            "id": 2047,
+            "quantity": {
+              "amount": 1,
+              "unit": "teaspoon"
+            }
+          },
+          {
+            "id": 19335,
+            "quantity": {
+              "amount": 2,
+              "unit": "teaspoons"
+            }
+          }
+        ],
+        "instructions": [
+          {
+            "instruction": "Watch how to make this recipe.",
+            "number": 1
+          },
+          {
+            "instruction": "In a large bowl, whisk together buttermilk, eggs, baking powder, sugar, salt and butter.",
+            "number": 2
+          },
+          {
+            "instruction": "In another large bowl mix together all-purpose flour and buckwheat flour.",
+            "number": 3
+          },
+          {
+            "instruction": "Slowly add flour into the wet ingredients mixing with a whisk.",
+            "number": 4
+          },
+          {
+            "instruction": "Mix until there are no lumps and the batter is smooth and velvety.",
+            "number": 5
+          },
+          {
+            "instruction": "In a large cast iron skillet or flat grill pan over medium-high heat, melt a tablespoon of butter. Ladle pancake batter onto skillet to desired size. Using the ladle, form pancake into circular shape. Cook on each side for 2 to 3 minutes or until golden brown. Set pancakes aside and keep warm. Repeat with remaining ingredients.",
+            "number": 6
+          },
+          {
+            "instruction": "Once completed, spread peanut butter on a pancake, layer it with sliced bananas and drizzle it with honey. Top the pancake with another pancake to form a sandwich. Repeat with remaining pancakes and serve with extra honey.",
+            "number": 7
+          }
+        ],
+        "name": "Elvis Pancakes",
+        "tags": [
+          "side dish"
+        ]
+      })
   })
 
   it('Should be a function', () => {
@@ -640,7 +732,7 @@ describe('User', () => {
     expect(user1.name).to.equal("Saige O'Kon");
   });
 
-  it('Should have anv id', () => {
+  it('Should have an id', () => {
     expect(user1.id).to.equal(1);
   });
 
@@ -667,7 +759,7 @@ describe('User', () => {
     expect(user1.removeFromFavorites).to.be.a('function');
   });
 
-  it('Should return favorites array without removed recipe', () => {
+  it('Should return favorites array with the chosen recipe removed', () => {
     user1.addToFavorites(recipe1)
     user1.addToFavorites(recipe2)
     user1.removeFromFavorites(recipe1)
@@ -695,4 +787,113 @@ describe('User', () => {
     expect(user1.filterFavsByName('MaPlE')).to.deep.equal([recipe2])
     expect(user1.filterFavsByName('not a real search')).to.deep.equal([]);
   });
+
+  it('Should be able to compare favorites and pantry ingredients to check if there\'s enough ingredients', () => {
+    user1.addToFavorites(recipe1)
+    user1.addToFavorites(recipe2)
+    user1.addToFavorites(recipe3)
+    expect(user1.checkPantry(recipe1)).to.equal(false)
+    expect(user1.checkPantry(recipe2)).to.equal(false)
+    expect(user1.checkPantry(recipe3)).to.equal(true)
+  });
+
+  it('Should be able to remove used ingredients when a chosen recipe is cooked', () => {
+    user1.addToFavorites(recipe1)
+    user1.addToFavorites(recipe2)
+    user1.addToFavorites(recipe3)
+    user1.subtractFromPantry(recipe3)
+    expect(user1.pantry).to.deep.equal([
+      { ingredient: 11297, amount: 4 },
+      { ingredient: 1082047, amount: 10 },
+      { ingredient: 20081, amount: 4 },
+      { ingredient: 11215, amount: 5 },
+      { ingredient: 2047, amount: 5 },
+      { ingredient: 1123, amount: 6 },
+      { ingredient: 11282, amount: 4 },
+      { ingredient: 6172, amount: 2 },
+      { ingredient: 2044, amount: 2 },
+      { ingredient: 2050, amount: 4 },
+      { ingredient: 1032009, amount: 3 },
+      { ingredient: 5114, amount: 3 },
+      { ingredient: 1017, amount: 2 },
+      { ingredient: 18371, amount: 5 },
+      { ingredient: 1001, amount: 4 },
+      { ingredient: 99223, amount: 2 },
+      { ingredient: 1230, amount: 0 },
+      { ingredient: 9152, amount: 4 },
+      { ingredient: 10611282, amount: 2 },
+      { ingredient: 93607, amount: 2 },
+      { ingredient: 14106, amount: 4 },
+      { ingredient: 1077, amount: 4 },
+      { ingredient: 6150, amount: 2 },
+      { ingredient: 1124, amount: 2 },
+      { ingredient: 10011693, amount: 4 },
+      { ingredient: 1102047, amount: 2 },
+      { ingredient: 19206, amount: 2 },
+      { ingredient: 1145, amount: 4 },
+      { ingredient: 1002030, amount: 4 },
+      { ingredient: 12061, amount: 2 },
+      { ingredient: 19335, amount: 2 },
+      { ingredient: 15152, amount: 3 },
+      { ingredient: 9003, amount: 2 },
+      { ingredient: 18372, amount: 3 },
+      { ingredient: 2027, amount: 2 }
+    ])
+  });
+
+  it('Should have a method that adds user given ingredient and amount to the pantry', () => {
+    expect(user1.addIngredient([{
+      "id": 11304,
+      "amount": 5,
+    }])).to.deep.equal([
+      { ingredient: 11297, amount: 4 },
+      { ingredient: 1082047, amount: 10 },
+      { ingredient: 20081, amount: 5 },
+      { ingredient: 11215, amount: 5 },
+      { ingredient: 2047, amount: 6 },
+      { ingredient: 1123, amount: 8 },
+      { ingredient: 11282, amount: 4 },
+      { ingredient: 6172, amount: 2 },
+      { ingredient: 2044, amount: 2 },
+      { ingredient: 2050, amount: 4 },
+      { ingredient: 1032009, amount: 3 },
+      { ingredient: 5114, amount: 3 },
+      { ingredient: 1017, amount: 2 },
+      { ingredient: 18371, amount: 7 },
+      { ingredient: 1001, amount: 6 },
+      { ingredient: 99223, amount: 2 },
+      { ingredient: 1230, amount: 2 },
+      { ingredient: 9152, amount: 4 },
+      { ingredient: 10611282, amount: 2 },
+      { ingredient: 93607, amount: 2 },
+      { ingredient: 14106, amount: 4 },
+      { ingredient: 1077, amount: 4 },
+      { ingredient: 6150, amount: 2 },
+      { ingredient: 1124, amount: 2 },
+      { ingredient: 10011693, amount: 4 },
+      { ingredient: 1102047, amount: 2 },
+      { ingredient: 19206, amount: 2 },
+      { ingredient: 1145, amount: 4 },
+      { ingredient: 1002030, amount: 4 },
+      { ingredient: 12061, amount: 2 },
+      { ingredient: 19335, amount: 4 },
+      { ingredient: 15152, amount: 3 },
+      { ingredient: 9003, amount: 2 },
+      { ingredient: 18372, amount: 3 },
+      { ingredient: 2027, amount: 2 },
+      { ingredient: 11304, amount: 5 }
+    ]);
+  });
+
+  it('Should be able to return a list of the ingredients and amounts needed to be able to cook a recipe', () => {
+    user1.addToFavorites(recipe1)
+    user1.addToFavorites(recipe2)
+    expect(user1.returnNeededIngredients(recipe1)).to.deep.equal([
+      { id: 19334, quantity: { amount: 0.5, unit: 'c' } },
+      { id: 1012047, quantity: { amount: 24, unit: 'servings' } },
+      { id: 10019903, quantity: { amount: 2, unit: 'c' } },
+      { id: 19206, quantity: { amount: 3, unit: 'Tbsp' } }
+    ])
+  });
+
 })
