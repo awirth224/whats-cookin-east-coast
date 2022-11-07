@@ -29,6 +29,11 @@ const searchInput = document.querySelector("#searchBar")
 const addFavoriteButton = document.querySelector(".add-to-favorites-button")
 const favoritesSearchInput = document.querySelector("#searchFavorites")
 const searchFavoritesButton = document.querySelector(".submit-search-favorites-button")
+const searchPantryButton = document.querySelector(".user-pantry")
+const userIdInput = document.getElementById("userId")
+const ingredientIdInput = document.getElementById("ingredientId")
+const totalAMountIdInput = document.getElementById("totalAmount")
+const ingredientInputButton = document.querySelector(".add-to-pantry")
 
 const allRecipesView = document.querySelector(".all-recipes-view")
 const homeView = document.querySelector(".home-view")
@@ -36,6 +41,7 @@ const selectedRecipeView = document.querySelector(".selected-recipe-view")
 const searchedRecipeView = document.querySelector(".searched-recipe-view")
 const viewSearchedFavorites = document.querySelector(".view-searched-favorites-recipes")
 const viewSavedFavorites = document.querySelector(".saved-section")
+const formView = document.querySelector(".user-pantry-view")
 
 
 //Global Variables
@@ -52,10 +58,9 @@ let currentUser
 //Functions
 const fetchApiCalls = () => {
     apiCalls.fetchData().then(data => {
-      ingredientsData = data[0].ingredientsData;
-      recipeData = data[1].recipeData;
-      usersData = data[2].usersData;
-
+      ingredientsData = data[0]
+      recipeData = data[1]
+      usersData = data[2]
       loadHandler();
     });
   };
@@ -250,6 +255,20 @@ function viewHome() {
     showElement(viewSavedFavorites)
 }
 
+function showFormView() {
+    hideElement(homeView)
+    showElement(viewAllRecipesButton)
+    showElement(homeButton)
+    hideElement(allRecipesView)
+    hideElement(selectedRecipeView)
+    hideElement(viewSavedFavorites)
+    showElement(formView)
+}
+
+function postNewIngredient() {
+
+}
+
 //EventListener
 window.addEventListener("load", fetchApiCalls())
 homeButton.addEventListener("click", function(event) {
@@ -318,4 +337,14 @@ addFavoriteButton.addEventListener("click", function(event) {
 searchFavoritesButton.addEventListener("click", function(event) {
     event.preventDefault()
     updateFavoritesBySearch()
+})
+
+searchPantryButton.addEventListener("click", function(event) {
+    event.preventDefault()
+    showFormView()
+})
+
+ingredientInputButton.addEventListener("click", function(event) {
+    event.preventDefault()
+    postNewIngredient()
 })
