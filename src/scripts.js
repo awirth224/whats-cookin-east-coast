@@ -55,6 +55,7 @@ let usersData
 let usersList = []
 let currentUser
 
+
 //Functions
 const fetchApiCalls = () => {
     apiCalls.fetchData().then(data => {
@@ -266,9 +267,29 @@ function showFormView() {
 }
 
 function postNewIngredient() {
-
+    let postTemplate = { userID: Number(userIdInput.value), ingredientID: Number(ingredientIdInput.value), ingredientModification: Number(totalAMountIdInput.value) }
+    postApiIngredient(postTemplate)
 }
 
+function postApiIngredient(postTemplate) {
+    console.log('POST Temp', postTemplate)
+    fetch("http://localhost:3001/api/v1/users", {
+        method: "POST", 
+        body: JSON.stringify(postTemplate),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        if(response.ok){
+            console.log('RESPONSE', response)
+            return response.json()
+        } 
+        throw new Error(response.status)
+    })
+    .then(data => console.log("DATA", data))
+    .catch(error => console.log("ERROR", error))
+}
 //EventListener
 window.addEventListener("load", fetchApiCalls())
 homeButton.addEventListener("click", function(event) {
